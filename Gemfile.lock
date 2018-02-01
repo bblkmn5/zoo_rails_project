@@ -41,7 +41,10 @@ GEM
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     arel (8.0.0)
+    bcrypt (3.1.11-x64-mingw32)
     bindex (0.5.0)
+    bootstrap-sass (3.1.1.1)
+      sass (~> 3.2)
     builder (3.2.3)
     byebug (10.0.0)
     capybara (2.17.0)
@@ -53,6 +56,7 @@ GEM
       xpath (>= 2.0, < 4.0)
     childprocess (0.8.0)
       ffi (~> 1.0, >= 1.0.11)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -85,6 +89,9 @@ GEM
     nio4r (2.2.0)
     nokogiri (1.8.2-x64-mingw32)
       mini_portile2 (~> 2.3.0)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     public_suffix (3.0.1)
     puma (3.11.2)
     rack (2.0.4)
@@ -167,10 +174,13 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
+  bootstrap-sass (~> 3.1.1)
   byebug
   capybara (~> 2.13)
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
+  pry
   puma (~> 3.7)
   rails (~> 5.1.4)
   sass-rails (~> 5.0)

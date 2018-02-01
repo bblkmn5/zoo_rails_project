@@ -1,0 +1,13 @@
+<%= form_for @keeper do |f| %>
+    <div="field">
+        <%= f.label :name %>:
+        <%= f.text_field :name %>
+    </div><br><br>
+
+    <div="field">
+        <%= f.label :experience %>(in years):
+        <%= f.number_field :experience %><br />
+    </div>
+
+    <%= f.submit %>
+<% end %>

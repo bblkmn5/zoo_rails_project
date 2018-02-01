@@ -9,9 +9,14 @@ class KeepersController < ApplicationController
     end
 
     def new
+        @keeper = Keeper.new
     end
 
     def create
+        @keeper = Keeper.new(keeper_params)
+        if @keeper.save
+            redirect_to keeper_path(@keeper)
+        end
     end
 
     def edit
