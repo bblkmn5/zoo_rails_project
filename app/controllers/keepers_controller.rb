@@ -23,9 +23,16 @@ class KeepersController < ApplicationController
     end
 
     def update
+        if @keeper.update(keeper_params)
+            redirect_to keeper_path(@keeper)
+        else
+            redirect_to edit_keeper_path(@keeper)
+        end
     end
 
     def destroy
+        @keeper.delete
+        redirect_to keeper_path
     end
 
     private

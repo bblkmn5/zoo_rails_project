@@ -1,0 +1,7 @@
+<h1>Zoo Keepers</h1>
+<% @keepers.each do |keeper| %>
+    <ul>
+        <h2><%= link_to keeper.name, keeper_path(keeper) %></h2>
+        <li>Experience: <%= keeper.experience %> years</li><br />
+    </ul>
+<% end %>
