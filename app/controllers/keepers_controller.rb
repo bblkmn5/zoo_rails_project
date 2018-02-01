@@ -1,9 +1,11 @@
 class KeepersController < ApplicationController
+    before_action :set_keeper, only: [:show, :edit, :update, :destroy]
+
     def index
+        @keepers = Keeper.all 
     end
 
     def show
-        @keeper = Keeper.find_by(params[:id])
     end
 
     def new
@@ -22,6 +24,10 @@ class KeepersController < ApplicationController
     end
 
     private
+
+    def set_keeper
+        @keeper = Keeper.find(params[:id])
+    end
 
     def keeper_params
         params.require(:keeper).permit(:name, :experience)
