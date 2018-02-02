@@ -1,3 +1,5 @@
 class Animal < ApplicationRecord
-    belongs_to :keeper
+    has_many :animal_keepers
+    has_many :keepers, through: :animal_keepers
+    
 end
