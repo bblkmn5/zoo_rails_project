@@ -42,6 +42,6 @@ class KeepersController < ApplicationController
     end
 
     def keeper_params
-        params.require(:keeper).permit(:name, :experience)
+        params.require(:keeper).permit(:name, :zoo_id)
     end
 end

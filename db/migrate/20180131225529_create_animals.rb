@@ -3,10 +3,11 @@ class CreateAnimals < ActiveRecord::Migration[5.1]
     create_table :animals do |t|
       t.string :name
       t.string :species
-      t.string :gender
       t.string :personality
-      t.boolean :hungry
-      t.boolean :clean
+      t.integer :keepers_needed
+      t.integer :zoo_id
+      t.datetime :last_fed
+      t.datetime :last_cleaned
       
       t.timestamps
     end

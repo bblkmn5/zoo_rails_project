@@ -10,30 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180131230453) do
+ActiveRecord::Schema.define(version: 20180202174553) do
+
+  create_table "animal_keepers", force: :cascade do |t|
+    t.integer "animal_id"
+    t.integer "keeper_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "animals", force: :cascade do |t|
     t.string "name"
     t.string "species"
-    t.string "gender"
     t.string "personality"
-    t.boolean "hungry"
-    t.boolean "clean"
+    t.integer "keepers_needed"
+    t.integer "zoo_id"
+    t.datetime "last_fed"
+    t.datetime "last_cleaned"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "keepers", force: :cascade do |t|
     t.string "name"
-    t.integer "experience"
+    t.integer "zoo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string "username"
+    t.integer "zoo_id"
     t.string "password_digest"
     t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "zoos", force: :cascade do |t|
+    t.string "name"
+    t.integer "animal_capacity"
+    t.integer "keeper_capacity"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
