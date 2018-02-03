@@ -3,6 +3,7 @@ class AnimalsController < ApplicationController
 
     def index
         @animals = Animal.all
+        @zoo = Zoo.first.name
     end
 
     def show

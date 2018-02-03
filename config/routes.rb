@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   resources :users
   resources :keepers
   resources :animals
+  resources :zoos
   
 end

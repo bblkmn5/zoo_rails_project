@@ -1,7 +1,9 @@
 <h1>Zoo Keepers</h1>
 <% @keepers.each do |keeper| %>
     <ul>
-        <h2><%= link_to keeper.name, keeper_path(keeper) %></h2>
-        <li>Belongs to: <%= keeper.zoo_id %> Zoo</li><br />
+        <h2><%= link_to "#{keeper.name}", keeper_path(keeper) %></h2>
+        <li>Works at: <%= keeper.zoo.name %></li><br />
     </ul>
 <% end %>
+
+<%= link_to "New Zoo-Keeper", new_keeper_path %>
