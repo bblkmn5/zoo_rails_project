@@ -1,13 +1,15 @@
 <%= form_for @keeper do |f| %>
-    <div="field">
+    <div class="field">
         <%= f.label :name %>:
         <%= f.text_field :name %>
-    </div><br><br>
+    </div><br>
 
-    <div="field">
-        <%= f.label :zoo_id %>(in years):
-        <%= f.number_field :zoo_id %><br />
+    <div class="field">
+        <%= f.label :zoo_id %>:
+        <%= f.collection_select :zoo_id, Zoo.order(:name), :id, :name, include_blank: true %>
+    </div><br>
+
+    <div class="actions">
+        <%= f.submit %>
     </div>
-
-    <%= f.submit %>
 <% end %>

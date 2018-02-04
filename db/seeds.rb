@@ -11,6 +11,6 @@ Animal.create([{name: "Shasta", species: "Cheetah", personality: "playful", keep
 
 Keeper.create([{name: "Katie", zoo_id: 1}, {name: "Bob", zoo_id: 2}, {name: "Hans", zoo_id: 2}])
 
-Zoo.create([{name: "Best Zoo Ever", animal_capacity: "5", keeper_capacity: 5, user_id: 1}, {name: "Second Best Zoo Ever", animal_capacity: "2", keeper_capacity: 2, user_id: 2}])
+Zoo.create([{name: "Best Zoo Ever", animal_capacity: 5, keeper_capacity: 5, user_id: 1}, {name: "Second Best Zoo Ever", animal_capacity: 2, keeper_capacity: 2, user_id: 2}])
 
 
