@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<% if @message %>
+    <h2><em><%= @message %><em></h2>
+<% end %>
+
+<p>Username: <%= @user.username %></p>
+<p>Email: <%= @user.email %></p>
+
+<%= link_to "Log Out", '/logout'%>

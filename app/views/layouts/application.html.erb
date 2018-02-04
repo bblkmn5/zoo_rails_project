@@ -1,21 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ZooRailsProject</title>
+    <title>Zoo Rails Project</title>
     <%= csrf_meta_tags %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <nav class="navbar joint-center navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Home</a>
-        <a class="navbar-link" href="/animals">Animals<span class="sr-only"></span></a>
-        <a class="navbar-link" href="/keepers">Zoo-Keepers</a>
-        <a class="navbar-link" href="/zoos">Other Zoos</a>
-        <a class="navbar-link" href="/">Sign Out</a>
-    </nav>
-
+    
+    <%= render '/layouts/header' %>
     <%= yield %>
   </body>
 </html>

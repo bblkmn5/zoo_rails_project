@@ -1,0 +1,30 @@
+<%= form_for @animal do |f| %>
+    <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+
+    <div class="field">
+        <%= f.label :species %>
+        <%= f.text_field :species %>
+    </div>
+
+    <div class="field">
+        <%= f.label :personality %>
+        <%= f.text_field :personality %>
+    </div>
+
+    <div class="field">
+        <%= f.label :keepers_needed %>
+        <%= f.number_field :keepers_needed %>
+    </div>
+
+    <div class="field">
+        <%= f.label :zoo_id %>
+        <%= f.collection_select :zoo_id, Zoo.order(:name), :id, :name, include_blank: true %>
+    </div>
+
+    <div class="actions">  
+        <%= f.submit %>
+    </div>
+<% end %>
