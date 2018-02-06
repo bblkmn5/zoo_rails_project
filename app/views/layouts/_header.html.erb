@@ -1,12 +1,13 @@
 <nav class="navbar joint-center navbar-dark bg-dark">
     <a class="navbar-brand" href="/">Home</a>
-        <% if signed_in? %>
+        <% if !!@current_user %>
             <a class="navbar-link" href="/animals">Animals<span class="sr-only"></span></a>
             <a class="navbar-link" href="/keepers">Zoo-Keepers</a>
             <a class="navbar-link" href="/zoos">Other Zoos</a>
-            <a class="navbar-link" href="/signout">Sign Out</a>
+            <a class="navbar-link"> 
+            <%= link_to "Log Out", logout_path, method: :delete %></a>
         <% else %>
-            <a class="navbar-link" href="/signin">Sign In</a>
-            <a class="navbar-link" href="/signup">Sign Up</a>
+            <a class="navbar-link"><%= link_to "Log In", login_path %></a>
+            <a class="navbar-link"><%= link_to "Sign Up", new_user_path %></a>
         <% end %>
 </nav>
