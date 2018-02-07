@@ -1,4 +1,4 @@
-<h1>List of Animals in <%= @zoo %></h1>
+<h1>List of Animals in <%= current_user.zoo %></h1>
     <% @animals.each do |animal| %>
         <h3><%= link_to "#{animal.name}", animal_path(animal) %><h3>
         <ul>

@@ -1,0 +1,7 @@
+<%= f.label @zoo.animal_capacity, "How many Animals Can You Fit?" %>
+<%= f.number_field @zoo.animal_capacity, class: "form-control" %><br>
+
+<%= f.label :keeper_capacity, "How many Zoo Keepers Can You Employ?" %>
+<%= f.number_field :keeper_capacity, class: "form-control" %><br>
+
+<%= f.submit, "Create Your Zoo!" %>

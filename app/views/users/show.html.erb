@@ -7,4 +7,4 @@
 <p>Username: <%= @user.username %></p>
 <p>Email: <%= @user.email %></p>
 
-<%= link_to "Log Out", '/logout'%>
+<%= link_to "Log Out", logout_path, method: :delete %>

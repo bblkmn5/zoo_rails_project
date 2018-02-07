@@ -3,7 +3,7 @@ class AnimalsController < ApplicationController
 
     def index
         @animals = Animal.all
-        @zoo = Zoo.first.name
+        @zoo = current_user.zoo
     end
 
     def show
