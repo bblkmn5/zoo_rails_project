@@ -48,6 +48,10 @@ end
 
 gem "bootstrap-sass", "~> 3.1.1"
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-facebook'
+gem 'dotenv-rails'
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

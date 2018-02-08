@@ -4,6 +4,8 @@ class CreateZoos < ActiveRecord::Migration[5.1]
       t.string :name
       t.integer :animal_capacity
       t.integer :keeper_capacity
+      t.integer :animal_id
+      t.integer :keeper_id
       t.integer :user_id
 
       t.timestamps

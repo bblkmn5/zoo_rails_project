@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180208181350) do
+ActiveRecord::Schema.define(version: 20180208204241) do
 
   create_table "animal_keepers", force: :cascade do |t|
     t.integer "animal_id"
@@ -54,6 +54,9 @@ ActiveRecord::Schema.define(version: 20180208181350) do
     t.datetime "last_sign_in_at"
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.string "uid"
+    t.string "provider"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -62,6 +65,8 @@ ActiveRecord::Schema.define(version: 20180208181350) do
     t.string "name"
     t.integer "animal_capacity"
     t.integer "keeper_capacity"
+    t.integer "animal_id"
+    t.integer "keeper_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

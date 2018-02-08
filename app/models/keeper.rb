@@ -1,6 +1,6 @@
 class Keeper < ApplicationRecord
     belongs_to :zoo
-    has_many :animal_keepers
+    has_many :animals, through: :zoo
     
     validates :name, presence: true 
 end
