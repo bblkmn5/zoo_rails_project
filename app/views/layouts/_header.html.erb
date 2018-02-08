@@ -1,14 +1,14 @@
 <nav class="navbar joint-center navbar-dark bg-dark">
-    <% if !!@current_user %>
-        <a class="navbar-brand" href="<%= user_path(current_user) %>">Home</a>
-        <a class="navbar-link" href="/animals">Animals<span class="sr-only"></span></a>
-        <a class="navbar-link" href="/keepers">Zoo-Keepers</a>
-        <a class="navbar-link" href="/zoos">Other Zoos</a>
+    <% if signed_in? %>
+        <a class="navbar-brand"> <%= link_to "Home", user_path(current_user) %></a>
+        <a class="navbar-link"> <%= link_to "Zoo Animals", zoo_animals_path(@animals) %></a>
+        <a class="navbar-link"> <%= link_to "Zoo Keepers", zoo_keepers_path(@keepers) %></a>
+        <a class="navbar-link"><%= link_to "Other Zoos", zoo_path(@zoos) %></a>
         <a class="navbar-link"> 
         <%= link_to "Log Out", logout_path, method: :delete %></a>
     <% else %>
         <a class="navbar-brand" href="<%= root_url %>">Home</a>
-        <a class="navbar-link"><%= link_to "Log In", login_path %></a>
-        <a class="navbar-link"><%= link_to "Sign Up", new_user_path %></a>
+        <a class="navbar-link"><%= link_to "Log In", new_user_session_path %></a>
+        <a class="navbar-link"><%= link_to "Sign Up", new_user_registration_path %></a>
     <% end %>
 </nav>
