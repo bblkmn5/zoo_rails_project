@@ -1,22 +1,31 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :current_user
-  before_action :require_logged_in, except: [:new, :create, :home]
+  before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  def logged_in?
-    !!session[:user_id]
+  # before_action :current_user
+  before_action :authenticate_user!, only: [:show]
+  
+
+  #def logged_in?
+  #  !!session[:user_id]
   end 
 
   private
 
-  def require_logged_in
-    redirect_to root_path unless logged_in?
+  def configure_permitted_parameters
+    added_attrs = [:username, :email, :password, :password_confirmation]
+    devise_parameter_sanitizer.permit :signup, keys: added_attrs
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs
   end
 
-  def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  end
+  # def require_logged_in
+  #   redirect_to root_path unless logged_in?
+  # end
 
-  helper_method :current_user
+  # def current_user
+  #   @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  # end
+
+  # helper_method :current_user
 
 end

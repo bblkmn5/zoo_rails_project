@@ -6,9 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!([
-    {username: "Ben", password: "123456", password_confirmation: "123456", zoo_id: 1, email: "ben@ben.com"}, 
+    {name: "Ben", username: "BenB", password: "123456", password_confirmation: "123456", zoo_id: 1, email: "ben@ben.com"}, 
     
-    {username: "Alice", password: "654321", password_confirmation: "654321", zoo_id: 2, email: "alice@alice.com"}
+    {name: "Alice", username: "AliceA", password: "654321", password_confirmation: "654321", zoo_id: 2, email: "alice@alice.com"}
 ])
 
 Zoo.create!([
