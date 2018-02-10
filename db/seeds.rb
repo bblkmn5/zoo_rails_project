@@ -6,20 +6,18 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!([
-    {name: "Ben", username: "BenB", password: "123456", password_confirmation: "123456", zoo_id: 1, email: "ben@ben.com"}, 
+    {name: "Ben", password: "123456", password_confirmation: "123456", zoo_id: 1, email: "ben@ben.com"}, 
     
-    {name: "Alice", username: "AliceA", password: "654321", password_confirmation: "654321", zoo_id: 2, email: "alice@alice.com"}
+    {name: "Alice", password: "654321", password_confirmation: "654321", zoo_id: 2, email: "alice@alice.com"}
 ])
 
 Zoo.create!([
-
     {name: "Best Zoo Ever", animal_capacity: 5, keeper_capacity: 5, user_id: 1},
 
     {name: "Second Best Zoo Ever", animal_capacity: 2, keeper_capacity: 2, user_id: 2}
 ])
 
 Animal.create!([
-
     {name: "Shasta", species: "Cheetah", personality: "playful", keepers_needed: 1, zoo_id: 1},
 
     {name: "Rocky", species: "Rhino", personality: "quiet", keepers_needed: 2, zoo_id: 2}

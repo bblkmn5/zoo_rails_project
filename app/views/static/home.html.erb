@@ -1,11 +1,11 @@
 <h1>Welcome to the Zoo Database!</h1>
-    <% if session[:user_id] %>
-        <h2><%= @user.name %></h2>
-        <h3>Email: <%= @user.email %></h3>
-        <h3>Facebook UID: <%= @user.uid %></h3>
+    <% if signed_in? %>
+        <h2><%= current_user.username %></h2>
+        <h3>Email: <%= current_user.email %></h3>
+        <h3>Name: <%= current_user.name %></h3>
     <% else %>
         <%= link_to "Sign Up", new_user_path %><br>
-        <%= link_to('Log in with Facebook!', '/auth/facebook') %><br>
-        <%= link_to('Log in with Github!', '/auth/github') %><br>
+        <%= link_to('Log in with Facebook!', '/users/auth/facebook') %><br>
+        <%= link_to('Log in with Github!', '/users/auth/github') %><br>
         <%= link_to "Sign In", new_user_session_path %>
     <% end %>
