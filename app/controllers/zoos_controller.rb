@@ -1,8 +1,12 @@
 class ZoosController < ApplicationController
     before_action :set_zoo, only: [:show, :keepers_index, :animals_index]
 
-    def index
+    def zoo_index
         @zoos = Zoo.all_except(current_user)
+    end
+
+    def index
+        @zoos = Zoo.all 
     end
 
     def show
