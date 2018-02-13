@@ -58,7 +58,9 @@ ActiveRecord::Schema.define(version: 20180208204241) do
     t.string "provider"
     t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
   create_table "zoos", force: :cascade do |t|

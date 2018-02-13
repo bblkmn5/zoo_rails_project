@@ -1,10 +1,14 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>
 
 <% if @message %>
     <h2><em><%= @message %><em></h2>
 <% end %>
+-->
+<h2>Welcome, <%= current_user.name %>!</h2>
+    <h4>Your Email: <%= current_user.email %></h4><br>
+    <% if current_user.zoo_id.nil? %>
+        <%= link_to "Create Your Zoo", new_zoo_path %>
+    <% else %>
+        <h3>Your Zoo: <%= link_to "#{current_user.zoo.name}", zoo_url %></h3>
+    <% end %>
 
-<p>Username: <%= @user.username %></p>
-<p>Email: <%= @user.email %></p>
-
-<%= link_to "Log Out", logout_path, method: :delete %>

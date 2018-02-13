@@ -1,5 +1,5 @@
-<h1>List of Animals in <%= current_user.zoo %></h1>
-    <% @animals.each do |animal| %>
+<h1>List of Animals in <%= current_user.zoo.name %></h1>
+    <% current_user.zoo.animals.each do |animal| %>
         <h3><%= link_to "#{animal.name}", animal_path(animal) %><h3>
         <ul>
             <li>Species: <%= animal.species %></li>
@@ -10,5 +10,5 @@
         </ul>
     <% end %>
 
-<%= link_to "New Animal", new_animal_path %>
+<%= link_to "Add a New Animal", new_animal_path %>
                         
