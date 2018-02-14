@@ -1,7 +1,7 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     # You should configure your model like this:
   # devise :omniauthable, omniauth_providers: [:twitter]
-    skip_before_filter :require_no_authentication
+    # skip_before_filter :require_no_authentication
 
     def facebook
         @user = User.from_omniauth(request.env["omniauth.auth"])

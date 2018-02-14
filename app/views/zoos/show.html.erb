@@ -1,1 +1,16 @@
 <h1><%= @zoo.name %></h1>
+    <h4>Animal Capacity: <%= @zoo.animal_capacity %></h4>
+    <p>Animals Hosted</p>
+        <ul>
+            <% @zoo.animals.each do |animal| %>
+                <li><%= animal.name %></li>
+                <li><%= animal.species %></li>
+            <% end %>
+        </ul><br>
+    <h4>Zoo Keeper Capacity: <%= @zoo.keeper_capacity %></h4>
+    <p>Zoo Keepers Employed</p>
+        <ul>
+            <% @zoo.keepers.each do |keeper| %>
+                <li><%= keeper.name %></li>
+            <% end %>
+        </ul>

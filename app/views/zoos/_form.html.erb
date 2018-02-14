@@ -1,7 +1,13 @@
-<%= f.label @zoo.animal_capacity, "How many Animals Can You Fit?" %>
-<%= f.number_field @zoo.animal_capacity, class: "form-control" %><br>
+<%= form_for(@zoo) do |f| %>
+<%= f.label :name, "What is the name of your Zoo?" %>
+<%= f.text_field :name, class: "form-control" %><br>
+
+<%= f.label :animal_capacity, "How many Animals Can You Fit?" %>
+<%= f.number_field :animal_capacity, class: "form-control" %><br>
 
 <%= f.label :keeper_capacity, "How many Zoo Keepers Can You Employ?" %>
 <%= f.number_field :keeper_capacity, class: "form-control" %><br>
 
-<%= f.submit, "Create Your Zoo!" %>
+<%= f.submit %>
+
+<% end %>

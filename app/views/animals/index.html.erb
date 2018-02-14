@@ -1,6 +1,6 @@
 <h1>List of Animals in <%= current_user.zoo.name %></h1>
     <% current_user.zoo.animals.each do |animal| %>
-        <h3><%= link_to "#{animal.name}", animal_path(animal) %><h3>
+        <h3><%= link_to "#{animal.name}", animal_path(animal) %></h3>
         <ul>
             <li>Species: <%= animal.species %></li>
             <li>Personality: <%= animal.personality %></li>            

@@ -1,8 +1,8 @@
 class ZoosController < ApplicationController
-    before_action :set_zoo, only: [:show, :keepers_index, :animals_index]
+    before_action :set_zoo, only: [:show, :edit, :update, :destroy, :keepers_index, :animals_index]
 
-    def zoo_index
-        @zoos = Zoo.all_except(current_user)
+    def other_zoo
+        @zoos = Zoo.all_except(current_user.zoo)
     end
 
     def index
@@ -11,6 +11,31 @@ class ZoosController < ApplicationController
 
     def show
         @user = current_user
+    end
+
+    def new
+        @zoo = Zoo.new
+    end
+
+    def create
+        @zoo = Zoo.new(zoo_params)
+        @zoo.id == current_user.zoo_id 
+        if @zoo.save
+            redirect_to zoo_path(@zoo)
+        else
+            redirect_to current_user
+        end
+    end
+
+    def edit
+    end
+
+    def update
+        if @zoo.update(zoo_params)
+            redirect_to zoo_path(@zoo)
+        else
+            redirect_to edit_zoo_path(@zoo)
+        end
     end
 
     def keepers_index
@@ -30,6 +55,6 @@ class ZoosController < ApplicationController
     end
 
     def zoo_params
-        params.require(:zoo).permit(:name, :animal_capacity, :keeper_capacity, :user_attributes => [:username])
+        params.require(:zoo).permit(:name, :animal_capacity, :keeper_capacity)
     end
 end

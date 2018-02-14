@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   root 'static#home', as: 'root'
   get 'users/:id' => 'users#show', as: 'user'
+  get 'zoos/other_zoo' => 'zoos#other_zoo', as: 'other_zoos'
 
   resources :users do
     resources :zoos
