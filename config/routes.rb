@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :controllers => {:sessions => "users/sessions", :omniauth_callbacks => "users/omniauth_callbacks" }
+  devise_for :users, path: 'users', path_names: { sign_up: 'sign_up'}, :controllers => {:sessions => "users/sessions", :registrations => "users/registrations", :omniauth_callbacks => "users/omniauth_callbacks" }
   
   root 'static#home', as: 'root'
   get 'users/:id' => 'users#show', as: 'user'
