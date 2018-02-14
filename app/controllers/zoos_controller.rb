@@ -19,8 +19,9 @@ class ZoosController < ApplicationController
 
     def create
         @zoo = Zoo.new(zoo_params)
-        @zoo.id == current_user.zoo_id 
+        @zoo.user_id = current_user.id
         if @zoo.save
+            current_user.zoo_id = @zoo.id
             redirect_to zoo_path(@zoo)
         else
             redirect_to current_user

@@ -8,7 +8,18 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def new
   #   super
   # end
-
+  # def create
+  #   super do
+  #     zoo = Zoo.last
+  #     if user && user.authenticate(params[:user][:password])
+  #       User.last.update(zoo_id: zoo.id)
+  #     else
+  #       Devise.sign_out_all_scopes
+  #       User.last.delete
+  #       redirect_to new_user_registration_path, notice: "Create a Zoo first!"
+  #     end
+  #   end
+  # end
   # POST /resource
   # def create
   #   super
