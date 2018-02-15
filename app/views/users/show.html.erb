@@ -6,9 +6,9 @@
 -->
 <h2>Welcome, <%= current_user.name %>!</h2>
     <h4>Your Email: <%= current_user.email %></h4><br>
-    <% if current_user.zoo_id.nil? %>
-        <%= link_to "First things first. Create Your Zoo!", new_zoo_path %>
-    <% else %>
+    <% if current_user.zoo_id.present? %>
         <h3>Your Zoo: <%= link_to "#{current_user.zoo.name}", zoo_url %></h3>
+    <% else %>
+        <%= link_to "First things first. Create Your Zoo!", new_zoo_path %>
     <% end %>
 

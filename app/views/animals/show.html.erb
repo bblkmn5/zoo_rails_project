@@ -5,4 +5,5 @@
         <li>Keepers Needed: <%= @animal.keepers_needed %></li>
         <li>Last Fed: <%= @animal.last_fed %></li>
         <li>Last Cleaned: <%= @animal.last_cleaned %></li>
-    </ul>
+    </ul><br>
+<%= link_to "Edit this Animal", edit_animal_path(@animal) %>

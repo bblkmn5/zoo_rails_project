@@ -1,0 +1,5 @@
+<h1>Edit <%= @animal.name %></h1>
+
+<%= render 'form' %>
+
+<%= link_to "Set the Animal Free!", animal_path(@animal), method: :delete %>

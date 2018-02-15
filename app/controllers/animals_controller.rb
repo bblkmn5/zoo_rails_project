@@ -14,7 +14,9 @@ class AnimalsController < ApplicationController
     end
 
     def create
+        @zoo = current_user.zoo
         @animal = Animal.new(animal_params)
+        @animal.zoo_id = current_user.zoo_id
         if @animal.save
             redirect_to animal_path(@animal)
         end
@@ -33,6 +35,7 @@ class AnimalsController < ApplicationController
 
     def destroy
         @animal.delete
+        flash[:alert] = "After much consideration, you have decided to set #{@animal.name} free. Goodbye #{@animal.name}!"
         redirect_to animal_path
     end
 
@@ -43,6 +46,6 @@ class AnimalsController < ApplicationController
     end
     
     def animal_params
-        params.require(:animal).permit(:name, :species, :personality, :keepers_needed, :zoo_id, :last_fed, :last_cleaned)
+        params.require(:animal).permit(:name, :species, :personality, :keepers_needed, :last_fed, :last_cleaned)
     end
 end

@@ -3,9 +3,9 @@
     <p>Animals Hosted</p>
         <ul>
             <% @zoo.animals.each do |animal| %>
-                <li><%= animal.name %></li>
-                <li><%= animal.species %></li>
+                <li><%= link_to "#{animal.name}", animal_path(animal) %> </li>
             <% end %>
+            <%= link_to "Add an Animal", new_animal_path %>
         </ul><br>
     <h4>Zoo Keeper Capacity: <%= @zoo.keeper_capacity %></h4>
     <p>Zoo Keepers Employed</p>
@@ -13,4 +13,5 @@
             <% @zoo.keepers.each do |keeper| %>
                 <li><%= keeper.name %></li>
             <% end %>
+            <%= link_to "Add a Zoo Keeper", new_keeper_path %>
         </ul>

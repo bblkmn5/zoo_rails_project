@@ -20,8 +20,7 @@
     </div>
 
     <div class="field">
-        <%= f.label :zoo_id %>
-        <%= f.collection_select :zoo_id, Zoo.order(:name), :id, :name, include_blank: true %>
+        <%= f.hidden_field :zoo_id, value: "#{current_user.zoo_id}" %>
     </div>
 
     <div class="actions">  

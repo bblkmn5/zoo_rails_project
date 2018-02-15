@@ -2,6 +2,8 @@ class Zoo < ApplicationRecord
     belongs_to :user
     has_many :animals
     has_many :keepers
+
+    validates :name, uniqueness: true
     
 
     def users_attributes=(users_attributes)
