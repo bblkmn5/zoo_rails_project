@@ -36,7 +36,7 @@ class AnimalsController < ApplicationController
     def destroy
         @animal.delete
         flash[:alert] = "After much consideration, you have decided to set #{@animal.name} free. Goodbye #{@animal.name}!"
-        redirect_to animal_path
+        redirect_to zoo_animals_path
     end
 
     private

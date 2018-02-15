@@ -1,5 +1,6 @@
 class ZoosController < ApplicationController
     before_action :set_zoo, only: [:show, :edit, :update, :destroy, :keepers_index, :animals_index]
+    before_action :set_user, only: [:show]
 
     def other_zoo
         @zoos = Zoo.all_except(current_user.zoo)
@@ -13,7 +14,7 @@ class ZoosController < ApplicationController
     end
 
     def new
-        if User.last.zoo_id.present?
+        if current_user.zoo_id.present?
             render :show
         else
             @zoo = Zoo.new
@@ -60,7 +61,11 @@ class ZoosController < ApplicationController
         @zoo = Zoo.find(params[:id])
     end
 
+    def set_user
+        @user = User.find(params[:user_id])
+    end
+
     def zoo_params
-        params.require(:zoo).permit(:name, :animal_capacity, :keeper_capacity)
+        params.require(:zoo).permit(:name, :animal_capacity, :keeper_capacity, :user_id)
     end
 end

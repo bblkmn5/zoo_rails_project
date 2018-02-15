@@ -32,7 +32,7 @@ class KeepersController < ApplicationController
 
     def destroy
         @keeper.delete
-        redirect_to keeper_path
+        redirect_to zoo_keepers_path
     end
 
     private
