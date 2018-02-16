@@ -1,7 +1,7 @@
 <h1>Other Zoos</h1>
 
 <% @zoos.each do |zoo| %>
-    <h3><%= link_to "#{zoo.name}", zoo_path(zoo) %></h3>
+    <h3><%= zoo.name %> | Owner: <%= zoo.user.name %></h3>
     <p>Zoo Keeper Capacity: <%= zoo.keeper_capacity %></p>
     <p>Zoo Animal Capacity: <%= zoo.animal_capacity %></p>
 <% end %>

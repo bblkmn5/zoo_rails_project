@@ -8,9 +8,7 @@
 <%= f.label :keeper_capacity, "How many Zoo Keepers Can You Employ?" %>
 <%= f.number_field :keeper_capacity, class: "form-control" %><br>
 
-    <% if @zoo.user_id.nil? %>
-        <%= hidden_field :user_id, value: current_user.id %>
-    <% end %>
+<%= hidden_field :user_id, value: current_user.id %>
 
 <%= f.submit %>
 

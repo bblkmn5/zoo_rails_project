@@ -1,7 +1,7 @@
 class ZoosController < ApplicationController
     before_action :set_zoo, only: [:show, :edit, :update, :destroy, :keepers_index, :animals_index]
-    before_action :set_user, only: [:show]
-
+    before_action :require_logged_in
+    
     def other_zoo
         @zoos = Zoo.all_except(current_user.zoo)
     end
@@ -14,23 +14,16 @@ class ZoosController < ApplicationController
     end
 
     def new
-        if current_user.zoo_id.present?
-            render :show
-        else
-            @zoo = Zoo.new
-        end
+        @zoo = Zoo.new
     end
 
     def create
-        @user = User.last
         @zoo = Zoo.new(zoo_params)
-        @zoo.user_id = @user.id
-        @user.zoo_id = @zoo.id
         if @zoo.save
             redirect_to zoo_path(@zoo)
         else
             flash[:notice] = "That Zoo already exists!"
-            redirect_to @user
+            redirect_to current_user
         end
     end
 
@@ -59,10 +52,6 @@ class ZoosController < ApplicationController
 
     def set_zoo
         @zoo = Zoo.find(params[:id])
-    end
-
-    def set_user
-        @user = User.find(params[:user_id])
     end
 
     def zoo_params
