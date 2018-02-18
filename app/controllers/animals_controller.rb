@@ -14,9 +14,7 @@ class AnimalsController < ApplicationController
     end
 
     def create
-        @zoo = current_user.zoo
         @animal = Animal.new(animal_params)
-        @animal.zoo_id = current_user.zoo_id
         if @animal.save
             redirect_to animal_path(@animal)
         end
@@ -46,6 +44,6 @@ class AnimalsController < ApplicationController
     end
     
     def animal_params
-        params.require(:animal).permit(:name, :species, :personality, :keepers_needed, :last_fed, :last_cleaned)
+        params.require(:animal).permit(:name, :species, :personality, :keepers_needed, :last_fed, :last_cleaned, :zoo_id)
     end
 end

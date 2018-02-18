@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   end
   
   resources :zoos
+  resources :animals
+  resources :keepers
 end

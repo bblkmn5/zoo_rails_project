@@ -1,14 +1,19 @@
 <h1>List of Animals in <%= current_user.zoo.name %></h1>
-    <% current_user.zoo.animals.each do |animal| %>
-        <h3><%= link_to "#{animal.name}", animal_path(animal) %></h3>
-        <ul>
-            <li>Species: <%= animal.species %></li>
-            <li>Personality: <%= animal.personality %></li>            
-            <li>Keepers Needed: <%= animal.keepers_needed %></li>
-            <li>Last Fed: <%= animal.last_fed %></li>
-            <li>Last Cleaned: <%= animal.last_cleaned %></li>
-        </ul>
+    <% if current_user.zoo.animals.empty? %>
+        <p>Uh Oh, you have no Animals in your zoo!<p> <%= link_to "Add a New Animal", new_zoo_animal_path %><p>
+    <% else %>
+        <% current_user.zoo.animals.each do |animal| %>
+            <h3><%= link_to "#{animal.name}", animal_path(animal) %></h3>
+            <ul>
+                <li>Species: <%= animal.species %></li>
+                <li>Personality: <%= animal.personality %></li>            
+                <li>Keepers Needed: <%= animal.keepers_needed %></li>
+                <li>Last Fed: <%= animal.last_fed %></li>
+                <li>Last Cleaned: <%= animal.last_cleaned %></li>
+            </ul>
+        <% end %>
+            <%= link_to "Add a New Animal", new_zoo_animal_path %>
     <% end %>
 
-<%= link_to "Add a New Animal", new_animal_path %>
+
                         

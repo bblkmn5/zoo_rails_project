@@ -19,14 +19,18 @@ class ZoosController < ApplicationController
     end
 
     def create
+        @user = User.last
         @zoo = Zoo.new(zoo_params)
-        @zoo.user_id = current_user.id
+        @zoo.user_id = @user.id
+        # binding.pry
         if @zoo.save
-            current_user.zoo_id = @zoo.id
+            @user.update(zoo_id: @zoo.id)
+            current_user.update(zoo_id: @zoo.id)
             
             redirect_to zoo_path(@zoo)
         else
             flash[:notice] = "That Zoo already exists!"
+            redirect_to user_path(current_user)
         end
     end
 
