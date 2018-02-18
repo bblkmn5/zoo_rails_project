@@ -5,39 +5,20 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     def facebook
         @user = User.from_omniauth(request.env["omniauth.auth"])
-        # where(provider: auth.provider, uid: auth.uid).first_or_create
 
-        # if @user.persisted? && @user.zoo_id.blank?
-        #     redirect_to new_zoo_path
+        if @user.persisted?
             sign_in_and_redirect @user, :event => :authentication
             set_flash_message(:notice, :success, :kind => "Facebook")
-        # else
-        #     session["devise.facebook_data"] = request.env["omniauth.auth"]
-        #     redirect_to new_user_registration_url
-         
-            # @form = Zoo.new
-            # session["devise.facebook_data"] = request.env["omniauth.auth"]
-            # render 'zoos/new'
-        # end
+        else
+            session["devise.facebook_data"] = request.env["omniauth.auth"]
+            redirect_to new_user_registration_url
+        end
     end
-
-    # def github
-    #     @user = User.from_omniauth(request.env["omniauth.auth"])
-    #     # if @user.persisted?
-    #         sign_in_and_redirect @user
-    #         # , :event => :authentication
-    #         # set_flash_message(:notice, :success, :kind => "Github")
-    #     # else
-    #     #     session["devise.github_data"] = request.env["omniauth.auth"]
-    #     #     redirect_to new_user_registration_url
-    #     # end
-    # end
 
     def failure
         redirect_to root_path
     end
      
-
   # You should also create an action method in this controller like this:
   # def twitter
   # end
