@@ -4,25 +4,76 @@ class Animal < ApplicationRecord
 
     validates_uniqueness_of :name, scope: :species
     
-    def feed_animal
-        animal_time = self.last_fed.strftime("%H")
-        time = Time.now.strftime("%H")
-        if ((time - animal_time) >= 24) 
-            flash[:alert] = "It's time to feed #{self.name}!"
-        elsif ((time - animal_time) >= 18)
-            flash[:alert] = "You haven't fed #{self.name} in over 18 hours. Do you even care??"
-        elsif ((time - animal_time) >= 12)
-            flash[:alert] = "It's been 12 hours. Have you fed #{self.name} today?"
-        elsif ((time - animal_time) >= 6)
-            flash[:alert] = "It's time to feed #{self.name}!"
+    def feed_animal_count
+        feed_integer = 0
+        if self.last_fed == nil
+            feed_integer
         else
-            flash[:notice] = "It looks like #{self.name} isn't hungry. Keep up the good work!"
+            animal_time = self.last_fed.strftime("%H").to_i
+            time = Time.now.strftime("%H").to_i
+            since_fed = time - animal_time
+            if (since_fed >= 24) 
+                feed_integer = 4
+            elsif (since_fed >= 18)
+                feed_integer = 3
+            elsif (since_fed >= 12)
+                feed_integer = 2
+            else
+                feed_integer = 1 
+            end
         end
-        
     end
 
-    def clean_animal
+    def feed_animal_message
+        if feed_integer = 0
+            "Oh no! #{self.name} has never been fed! Feed it NOW!"
+        elsif feed_integer = 1
+            "It looks like #{self.name} isn't hungry. Keep up the good work!"
+        elsif feed_integer = 2
+            "It's time to feed #{self.name}!"
+        elsif feed_integer = 3
+            "Looks like you haven't fed #{self.name} today. #{self.name} might still like you if you feed right now!"
+        elsif feed_integer = 4
+            "You haven't fed #{self.name} in over #{since_fed} hours. Do you even care??"
+        else
+            "Hm.. Something isn't right."
+        end
+    end
 
+    def clean_animal_count
+        clean_integer = 0
+        if self.last_cleaned == nil
+            clean_integer
+        else
+            animal_time = self.last_cleaned.strftime("%H").to_i
+            time = Time.now.strftime("%H").to_i
+            since_cleaned = time - animal_time
+            if (since_cleaned >= 72)
+                clean_integer = 4
+            elsif (since_cleaned >= 36)    
+                clean_integer = 3
+            elsif (since_cleaned >= 24)
+                clean_integer = 2
+            else
+                clean_integer = 1
+            end
+        end
+    end
+
+    def clean_animal_message(clean_animal_count)
+        if clean_integer = 0
+            "Oh no! #{self.name} has never been cleaned! Gross! Clean them NOW!"
+        elsif clean_integer = 1
+            "It looks like #{self.name} isn't dirty. Keep up the good work!"
+        elsif clean_integer = 2
+            "It's time to clean #{self.name}!"
+        elsif clean_integer = 3
+            "It's been #{since_cleaned} hours. Have you cleaned #{self.name} today?"
+        elsif clean_integer = 4
+            "You haven't cleaned #{self.name} in over #{since_cleaned} hours. Do you even care??"
+        else
+            "Hm.. something weird is going on."
+        end
     end
 
     def frequency
