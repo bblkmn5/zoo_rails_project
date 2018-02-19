@@ -3,7 +3,6 @@ class AnimalsController < ApplicationController
 
     def index
         @animals = Animal.all
-        @zoo = current_user.zoo
     end
 
     def show
@@ -34,7 +33,7 @@ class AnimalsController < ApplicationController
     def destroy
         @animal.delete
         flash[:alert] = "After much consideration, you have decided to set #{@animal.name} free. Goodbye #{@animal.name}!"
-        redirect_to zoo_animals_path
+        redirect_to zoo_animals_path(:zoo_id)
     end
 
     private

@@ -32,7 +32,8 @@ class KeepersController < ApplicationController
 
     def destroy
         @keeper.delete
-        redirect_to zoo_keepers_path
+        flash[:alert] = "After much consideration, you have decided to lay off #{@keeper.name}. Goodbye #{@keeper.name}!"
+        redirect_to zoo_keepers_path(:zoo_id)
     end
 
     private

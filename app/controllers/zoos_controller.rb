@@ -1,14 +1,14 @@
 class ZoosController < ApplicationController
-    before_action :set_zoo, only: [:show, :edit, :update, :destroy, :keepers_index, :animals_index]
+    before_action :set_zoo, only: [:show, :edit, :update]
     before_action :authenticate_user!
     
     def other_zoo
         @zoos = Zoo.all_except(current_user.zoo)
     end
 
-    def index
-        @zoos = Zoo.all 
-    end
+    # def index
+    #     @zoos = Zoo.all 
+    # end
 
     def show
     end
@@ -43,16 +43,6 @@ class ZoosController < ApplicationController
         else
             redirect_to edit_zoo_path(@zoo)
         end
-    end
-
-    def keepers_index
-        @keepers = @zoo.keepers
-        render "keepers/index"
-    end
-
-    def animals_index
-        @animals = @zoo.animals
-        render "animals/index"
     end
 
     private
