@@ -17,18 +17,10 @@ class Zoo < ApplicationRecord
     end
 
     def animal_capacity_reached?
-        if self.animals.count >= self.animal_capacity 
-            true
-        else
-            false
-        end
+        self.animals.count >= self.animal_capacity ? true : false
     end
 
     def keeper_capacity_reached?
-        if self.keepers.count >= self.keeper_capacity 
-            true
-        else
-            false
-        end
+        self.keepers.count >= self.keeper_capacity ? true : false
     end
 end
