@@ -1,6 +1,7 @@
 class AnimalsController < ApplicationController
     before_action :set_animal, only: [:show, :edit, :update, :destroy]
-
+    before_action :set_zoo, only: [:index, :show, :create]
+    
     def index
         @animals = Animal.all
     end
@@ -40,6 +41,10 @@ class AnimalsController < ApplicationController
 
     def set_animal
         @animal = Animal.find(params[:id])
+    end
+
+    def set_zoo
+        @zoo = current_user.zoo
     end
     
     def animal_params

@@ -9,6 +9,9 @@
             <li>Works at: <%= keeper.zoo.name %></li><br />
         </ul>
     <% end %>
-
-    <%= link_to "Add a New Zoo Keeper", new_zoo_keeper_path %>
+    <% if @zoo.keeper_capacity_reached? %>
+        <p></p>
+    <% else %>
+        <%= link_to "Add a New Zoo Keeper", new_zoo_keeper_path %>
+    <% end %>
 <% end %>
