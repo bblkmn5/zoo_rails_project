@@ -15,9 +15,13 @@
     </div>
 
     <div class="field">
-        <%= f.label :keepers_needed %>
-        <%= f.number_field :keepers_needed %>
+        <%= f.fields_for :keepers do |keeper| %>
+            <%= keeper.label :name, "Keeper Name:" %>
+            <%= keeper.text_field :name %><br>
+            <%= keeper.hidden_field :zoo_id, value: "#{current_user.zoo_id}"%>
+        <% end %>
     </div>
+
 
     <div class="field">
         <%= f.hidden_field :zoo_id, value: "#{current_user.zoo_id}" %>

@@ -82,6 +82,4 @@ class Animal < ApplicationRecord
     #     end
     # end
 
-    def frequency
-    end
 end
