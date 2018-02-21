@@ -1,10 +1,4 @@
-<!--<p id="notice"><%= notice %></p>
-
-<% if @message %>
-    <h2><em><%= @message %><em></h2>
-<% end %>
--->
-<h2>Welcome, <%= current_user.name %>!</h2>
+<h2>Welcome <%=  current_user.name if @user.name %>!</h2>
     <h4>Your Email: <%= current_user.email %></h4><br>
     <% if current_user.zoo_id.present? %>
         <h3>Your Zoo: <%= link_to "#{current_user.zoo.name}", zoo_url %></h3>

@@ -1,4 +1,4 @@
-<h1>List of Zoo Keepers in <%= current_user.zoo.name %></h1>
+<h1>List of Zoo Keepers in <%= link_to  "#{current_user.zoo.name}", zoo_path(@zoo) %></h1>
 <% if current_user.zoo.keepers.empty? %>
     <p>Oh no, you have no Zoo Keepers!</p>
     <%= link_to "Add a New Zoo Keeper", new_zoo_keeper_path %>
