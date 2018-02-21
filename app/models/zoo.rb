@@ -1,5 +1,5 @@
 class Zoo < ApplicationRecord
-    belongs_to :user
+    has_many :users
     has_many :animals
     has_many :keepers
 

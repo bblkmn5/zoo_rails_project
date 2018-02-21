@@ -12,14 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20180208204241) do
 
-  create_table "animal_keepers", force: :cascade do |t|
-    t.integer "animal_id"
-    t.integer "keeper_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "animals", force: :cascade do |t|
     t.string "name"
     t.string "species"

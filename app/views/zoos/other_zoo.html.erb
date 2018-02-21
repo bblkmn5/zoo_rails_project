@@ -2,6 +2,17 @@
 
 <% @zoos.each do |zoo| %>
     <h3><%= zoo.name %> | Owner: <%= zoo.user.name %></h3>
-    <p>Zoo Keeper Capacity: <%= zoo.keeper_capacity %></p>
-    <p>Zoo Animal Capacity: <%= zoo.animal_capacity %></p>
+    <p>Zoo Keepers:</p>
+        <% zoo.keepers.each do |keeper| %>
+            <ul>  
+                <li><%= keeper.name %></li>
+            </ul>
+        <% end %>
+    <p>Zoo Animal Capacity:</p> 
+        <% zoo.animals.each do |animal| %>
+            <ul>
+                <li><%= animal.name %></li>
+                <li><%= animal.species %></li>
+            </ul>
+        <% end %>
 <% end %>

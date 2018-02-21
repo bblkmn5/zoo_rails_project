@@ -4,12 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]
 
-    has_one :zoo
-    has_many :animal_keepers
-    has_many :animals, through: :animal_keepers
-    has_many :keepers, through: :animal_keepers
+    has_many :zoos
+    has_many :animals, through: :zoos
+    has_many :keepers, through: :zoos
 
-    # validates :email, uniqueness: true
+    validates :email, uniqueness: true
     
     def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

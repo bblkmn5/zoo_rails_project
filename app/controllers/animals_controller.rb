@@ -55,7 +55,7 @@ class AnimalsController < ApplicationController
     end
 
     def set_zoo
-        @zoo = current_user.zoo
+        @zoo = current_user.zoos
     end
     
     def animal_params
