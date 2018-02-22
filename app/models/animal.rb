@@ -4,11 +4,11 @@ class Animal < ApplicationRecord
 
     validates_uniqueness_of :name, scope: :species
     
-    def keepers_attributes=(keepers_attributes)
-        keepers_attributes.values.each do |keeper_attributes|
-            self.keepers.build(keeper_attributes)
-        end
-    end
+    # def keepers_attributes=(keepers_attributes)
+    #     keepers_attributes.each do |keeper_attributes|
+    #         self.keepers.build(keeper_attributes)
+    #     end
+    # end
     
     # def feed_animal_count
     #     feed_integer = 0

@@ -6,7 +6,49 @@
 <%= f.number_field :animal_capacity, class: "form-control" %><br>
 
 <%= f.label :keeper_capacity, "How many Zoo Keepers Can You Employ?" %>
-<%= f.number_field :keeper_capacity, class: "form-control" %><br>
+<%= f.number_field :keeper_capacity, class: "form-control" %><br><br>
+
+    <%= f.fields_for :animals do |animal_builder| %>
+    <fieldset>
+        <legend>Add an Animal to your Zoo!</legend>
+        <p>
+            <%= animal_builder.label :name %>
+            <%= animal_builder.text_field :name, class: "form-control" %>
+        </p>
+
+        <p>
+            <%= animal_builder.label :species %>
+            <%= animal_builder.text_field :species, class: "form-control" %>
+        </p>
+
+        <p>
+            <%= animal_builder.label :personality %>
+            <%= animal_builder.text_field :personality, class: "form-control" %>
+        </p>
+        
+        <p>
+            <%= animal_builder.label :keepers_needed %>
+            <%= animal_builder.number_field :keepers_needed, class: "form-control" %>
+        </p>
+
+        <p>
+            <%= animal_builder.hidden_field :zoo_id, value: @zoo.id %>
+        </p>
+        </fieldset>
+    <% end %><br>
+
+    <%= f.fields_for :keepers do |keeper_builder|%>
+        <legend>Add a Keeper to your Zoo!</legend>
+
+        <p>
+            <%= keeper_builder.label :name %>
+            <%= keeper_builder.text_field :name, class: "form-control" %>
+        </p>
+        
+        <p>
+            <%= keeper_builder.hidden_field :zoo_id, value: @zoo.id %>
+        </p>
+    <% end %>
 
 <%= hidden_field :user_id, value: current_user.id %>
 

@@ -9,7 +9,7 @@ class User < ApplicationRecord
     has_many :keepers, through: :zoos
 
     validates :email, uniqueness: true
-    
+
     def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
         user.provider = auth.provider
@@ -20,4 +20,11 @@ class User < ApplicationRecord
         user.image = auth.info.image
       end
     end 
+
+    def zoo_attributes=(zoo_attributes)
+        self.zoo = Zoo.where(:name => zoo_attributes[:name]).first_or_create do |z|
+              z.animal_capacity = zoo_attributes[:animal_capacity]
+              z.keeper_capacity = zoo_attributes[:keeper_capacity]
+        end
+    end
 end

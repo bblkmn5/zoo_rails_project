@@ -45,7 +45,7 @@ class KeepersController < ApplicationController
     end
 
     def set_zoo
-        @zoo = current_user.zoo
+        @zoo = Zoo.find_by(params[:id])
     end
 
     def keeper_params

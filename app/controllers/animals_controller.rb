@@ -11,20 +11,11 @@ class AnimalsController < ApplicationController
 
     def new
         @animal = Animal.new
-        @keeper = Keeper.new
-        @animal.keepers.build
-        @animal.keepers.build
     end
 
     def create
         @animal = Animal.new(animal_params)
-        @animal.keepers.each do |keeper|
-            keeper = Keeper.new
-            keeper.zoo_id = @animal.zoo_id
-            keeper.save
-        end
-
-        @animal.keepers_needed = @animal.keepers.count
+        # @animal.keepers_needed = @animal.keepers.count
         binding.pry
         if @animal.save
             redirect_to animal_path(@animal)
@@ -55,10 +46,10 @@ class AnimalsController < ApplicationController
     end
 
     def set_zoo
-        @zoo = current_user.zoos
+        @zoo = Zoo.find_by(params[:id])
     end
     
     def animal_params
-        params.require(:animal).permit(:name, :species, :personality, :keepers_needed, :last_fed, :last_cleaned, :zoo_id, keepers_attributes: [:name, :zoo_id])
+        params.require(:animal).permit(:name, :species, :personality, :keepers_needed, :zoo_id)
     end
 end

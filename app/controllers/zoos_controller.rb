@@ -1,9 +1,8 @@
 class ZoosController < ApplicationController
     before_action :set_zoo, only: [:show, :edit, :update]
-    before_action :authenticate_user!
     
     def other_zoo
-        @zoos = Zoo.all_except(current_user.zoo)
+        @zoos = Zoo.all_except(current_user.zoos)
     end
 
     # def index
@@ -14,8 +13,9 @@ class ZoosController < ApplicationController
     end
 
     def new
-        @user = current_user
         @zoo = Zoo.new
+        @zoo.keepers.build
+        @zoo.animals.build
     end
 
     def create
@@ -52,6 +52,6 @@ class ZoosController < ApplicationController
     end
 
     def zoo_params
-        params.require(:zoo).permit(:name, :animal_capacity, :keeper_capacity)
+        params.require(:zoo).permit(:name, :animal_capacity, :keeper_capacity, animals_attributes: [:name, :species, :personality, :keepers_needed, :zoo_id], keepers_attributes: [:name, :zoo_id])
     end
 end

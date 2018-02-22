@@ -4,11 +4,16 @@ class Zoo < ApplicationRecord
     has_many :keepers
 
     validates :name, uniqueness: true
-    
 
-    def users_attributes=(users_attributes)
-        users_attributes.values.each do |user_attributes|
-            self.users.build(user_attributes)
+    def animals_attributes=(animals_attributes)
+        animals_attributes.each do |i,animal_attributes|
+            self.animals.build(animal_attributes)
+        end
+    end
+
+    def keepers_attributes=(keepers_attributes)
+        keepers_attributes.each do |i,keeper_attributes|
+            self.keepers.build(keeper_attributes)
         end
     end
     
