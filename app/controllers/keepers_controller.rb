@@ -1,4 +1,5 @@
 class KeepersController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_keeper, only: [:show, :edit, :update, :destroy]
     before_action :set_zoo, only: [:index, :show, :new, :create]
 

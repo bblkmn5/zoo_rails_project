@@ -1,6 +1,7 @@
 class AnimalsController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_animal, only: [:show, :edit, :update, :destroy]
-    before_action :set_zoo, only: [:index, :show, :create]
+    before_action :set_zoo, only: [:index, :new, :show, :create]
     
     def index
         @animals = Animal.all

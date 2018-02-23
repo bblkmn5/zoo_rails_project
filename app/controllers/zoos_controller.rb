@@ -1,4 +1,5 @@
 class ZoosController < ApplicationController
+    before_action :authenticate_user!
     before_action :set_zoo, only: [:show, :edit, :update]
     
     def other_zoo
