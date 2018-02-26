@@ -1,2 +1,4 @@
 <h1>Edit <%= @keeper.name %></h1>
 <%= render 'form' %>
+
+<%= link_to "Layoff this keeper", keeper_path(@keeper), method: :delete%>

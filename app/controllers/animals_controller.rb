@@ -1,7 +1,8 @@
 class AnimalsController < ApplicationController
     before_action :authenticate_user!
     before_action :set_animal, only: [:show, :edit, :update, :destroy]
-    before_action :set_zoo, only: [:index, :new, :show, :create]
+    before_action :user_is_current_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_zoo, only: [:show, :edit, :update]
     
     def index
         @animals = Animal.all
@@ -19,7 +20,7 @@ class AnimalsController < ApplicationController
         # @animal.keepers_needed = @animal.keepers.count
         binding.pry
         if @animal.save
-            redirect_to animal_path(@animal)
+            redirect_to user_animals_path(@animal)
         end
     end
 
@@ -37,7 +38,7 @@ class AnimalsController < ApplicationController
     def destroy
         @animal.delete
         flash[:alert] = "After much consideration, you have decided to set #{@animal.name} free. Goodbye #{@animal.name}!"
-        redirect_to zoo_animals_path(:zoo_id)
+        redirect_to user_animals_path(:zoo_id)
     end
 
     private
@@ -47,10 +48,10 @@ class AnimalsController < ApplicationController
     end
 
     def set_zoo
-        @zoo = Zoo.find_by(params[:id])
+        @zoo = Zoo.find(params[:id])
     end
     
     def animal_params
-        params.require(:animal).permit(:name, :species, :personality, :keepers_needed, :zoo_id)
+        params.require(:animal).permit(:name, :species, :personality, :zoo_id)
     end
 end

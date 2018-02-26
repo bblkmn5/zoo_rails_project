@@ -5,13 +5,13 @@
 <% else %>
     <% @zoo.keepers.each do |keeper| %>
         <ul>
-            <h2><%= link_to "#{keeper.name}", keeper_path(keeper) %></h2>
+            <h2><%= link_to "#{keeper.name}", zoo_keeper_path(current_user, @zoo,keeper) %></h2>
             <li>Works at: <%= keeper.zoo.name %></li><br />
         </ul>
     <% end %>
     <% if @zoo.keeper_capacity_reached? %>
         <p></p>
     <% else %>
-        <%= link_to "Add a New Zoo Keeper", new_zoo_keeper_path %>
+        <%= link_to "Add a New Zoo Keeper", new_zoo_keeper_path(current_user, @zoo, @keeper) %>
     <% end %>
 <% end %>

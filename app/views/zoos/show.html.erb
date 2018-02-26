@@ -3,23 +3,23 @@
     <p>Animals Hosted</p>
         <ul>
             <% @zoo.animals.each do |animal| %>
-                <li><%= link_to "#{animal.name}", animal_path(animal) %> </li>
+                <li><%= link_to "#{animal.name}", user_animal_path(animal) %> </li>
             <% end %>
             <% if @zoo.animal_capacity_reached? %>
                 <p>You have reached your animal limit!</p>
             <% else %>
-                <%= link_to "Add an Animal", new_zoo_animal_path(@zoo) %>
+                <%= link_to "Add an Animal", new_user_animal_path(@zoo) %>
             <% end %>
         </ul><br>
     <h4>Zoo Keeper Capacity: <%= @zoo.keeper_capacity %></h4>
     <p>Zoo Keepers Employed</p>
         <ul>
             <% @zoo.keepers.each do |keeper| %>
-                <li><%= link_to "#{keeper.name} ", keeper_path(keeper) %></li>
+                <li><%= link_to "#{keeper.name} ", user_keeper_path(keeper) %></li>
             <% end %>
             <% if @zoo.keeper_capacity_reached? %>
                 <p>You have reached your keeper limit!</p>
             <% else %>
-                <%= link_to "Add a Zoo Keeper", new_zoo_keeper_path(@zoo) %>
+                <%= link_to "Add a Zoo Keeper", new_user_keeper_path(@zoo) %>
             <% end %>
         </ul>

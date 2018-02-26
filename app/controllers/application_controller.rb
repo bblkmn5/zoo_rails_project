@@ -3,6 +3,19 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     request.env['omniauth.orgin'] || @user
-  end 
+  end
+  
+  private
+
+  def user_is_current_user
+    unless current_user.id == params[:user_id].to_i
+      flash[:alert] = "You may only view your own zoo items."
+      if current_user != nil
+        redirect_to user_path(current_user)
+      else
+        redirect_to root_path
+      end
+    end
+  end
 
 end

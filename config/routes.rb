@@ -12,12 +12,12 @@ Rails.application.routes.draw do
     resources :keepers
   end
 
-  resources :zoos do
-    resources :animals
-    resources :keepers
-  end
+  # resources :zoos do
+  #   resources :animals
+  #   resources :keepers
+  # end
   
-  resources :zoos
-  resources :animals
-  resources :keepers
+  # resources :zoos
+  # resources :animals
+  # resources :keepers
 end

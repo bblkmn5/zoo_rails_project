@@ -1,4 +1,4 @@
-<%= form_for(@zoo) do |f| %>
+<%= form_for zoo, url: {action: action} do |f| %>
 <%= f.label :name, "What is the name of your Zoo?" %>
 <%= f.text_field :name, class: "form-control" %><br>
 
@@ -24,11 +24,6 @@
         <p>
             <%= animal_builder.label :personality %>
             <%= animal_builder.text_field :personality, class: "form-control" %>
-        </p>
-        
-        <p>
-            <%= animal_builder.label :keepers_needed %>
-            <%= animal_builder.number_field :keepers_needed, class: "form-control" %>
         </p>
 
         <p>

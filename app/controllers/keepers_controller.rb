@@ -1,7 +1,8 @@
 class KeepersController < ApplicationController
     before_action :authenticate_user!
     before_action :set_keeper, only: [:show, :edit, :update, :destroy]
-    before_action :set_zoo, only: [:index, :show, :new, :create]
+    before_action :set_zoo
+    before_action :user_is_current_user, only: [:show, :edit, :update, :destroy]
 
     def index
         @keepers = Keeper.all 
@@ -11,7 +12,6 @@ class KeepersController < ApplicationController
     end
 
     def new
-        
         @keeper = Keeper.new
     end
 
@@ -46,7 +46,7 @@ class KeepersController < ApplicationController
     end
 
     def set_zoo
-        @zoo = Zoo.find_by(params[:id])
+        @zoo = Zoo.find_by(id: params[:id])
     end
 
     def keeper_params
