@@ -1,24 +1,28 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Ruby on Rails Application was created for people who want to keep track of Zoos that they own, as well as the animals and zoo keepers inhabiting each zoo.
 
-Things you may want to cover:
+#Installation And Development
 
-* Ruby version
+This app uses Ruby 2.3.3 and Rails 5.1.4. To begin development, fork and clone this repo, and then run:
 
-* System dependencies
+``` bundle install
+    rake db:migrate
+    rake db:seed 
+```
 
-* Configuration
+To start your own local server, run:
 
-* Database creation
+``` rails s ```
 
-* Database initialization
+Once the server is up and running, navigate on your browser of choice to:
+    ```localhost:3000```
 
-* How to run the test suite
+and sign up by creating a manual account or using omniauth to sign in via Facebook. 
 
-* Services (job queues, cache servers, search engines, etc.)
+# Contributions
+Contributions are welcome through pull requests and issues reported.
 
-* Deployment instructions
+#License
+This Zoo Rails Project is releasued under an MIT License.
 
-* ...
