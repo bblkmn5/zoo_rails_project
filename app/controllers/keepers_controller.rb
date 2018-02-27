@@ -1,8 +1,8 @@
 class KeepersController < ApplicationController
     before_action :authenticate_user!
     before_action :set_keeper, only: [:show, :edit, :update, :destroy]
-    before_action :set_zoo
     before_action :user_is_current_user, only: [:show, :edit, :update, :destroy]
+    before_action :set_zoo, only: [:show, :edit, :update, :destroy]
 
     def index
         @keepers = Keeper.all 
@@ -17,8 +17,14 @@ class KeepersController < ApplicationController
 
     def create
         @keeper = Keeper.new(keeper_params)
-        if @keeper.save
-            redirect_to keeper_path(@keeper)
+        @zoo = Zoo.find_by(id: @keeper.zoo_id)
+        if @zoo.keeper_capacity == @zoo.keepers.count
+            flash[:error] = "That Zoo cannot have anymore keepers! Please choose a different zoo."
+            redirect_to new_user_keeper_path
+        elsif @keeper.save
+            redirect_to user_keepers_path(current_user, @keeper)
+        else
+            redirect_to root_path
         end
     end
 
@@ -29,14 +35,14 @@ class KeepersController < ApplicationController
         if @keeper.update(keeper_params)
             redirect_to keeper_path(@keeper)
         else
-            redirect_to edit_keeper_path(@keeper)
+            redirect_to edit_user_keeper_path(current_user, @keeper)
         end
     end
 
     def destroy
         @keeper.delete
         flash[:alert] = "After much consideration, you have decided to lay off #{@keeper.name}. Goodbye #{@keeper.name}!"
-        redirect_to zoo_keepers_path(:zoo_id)
+        redirect_to user_keepers_path(:zoo_id)
     end
 
     private
@@ -46,7 +52,7 @@ class KeepersController < ApplicationController
     end
 
     def set_zoo
-        @zoo = Zoo.find_by(id: params[:id])
+        @zoo = Zoo.find(params[:id])
     end
 
     def keeper_params

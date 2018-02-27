@@ -1,4 +1,4 @@
 <h1>Edit <%= @keeper.name %></h1>
-<%= render 'form' %>
+<%= render partial: 'form', locals: {keeper: @keeper, zoo: @zoo, action: 'update'} %>
 
-<%= link_to "Layoff this keeper", keeper_path(@keeper), method: :delete%>
+<%= link_to "Layoff this keeper", user_keeper_path(current_user, @keeper), method: :delete, data: {confirm: "Are you sure you want to layoff #{@keeper.name}?"} %>

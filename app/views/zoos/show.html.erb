@@ -15,11 +15,11 @@
     <p>Zoo Keepers Employed</p>
         <ul>
             <% @zoo.keepers.each do |keeper| %>
-                <li><%= link_to "#{keeper.name} ", user_keeper_path(keeper) %></li>
+                <li><%= link_to "#{keeper.name} ", user_keeper_path(current_user, keeper) %></li>
             <% end %>
             <% if @zoo.keeper_capacity_reached? %>
                 <p>You have reached your keeper limit!</p>
             <% else %>
-                <%= link_to "Add a Zoo Keeper", new_user_keeper_path(@zoo) %>
+                <%= link_to "Add a Zoo Keeper", new_user_keeper_path(current_user, @zoo) %>
             <% end %>
         </ul>

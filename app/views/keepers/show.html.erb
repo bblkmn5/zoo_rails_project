@@ -1,4 +1,4 @@
 <h1><%= @keeper.name %></h1>
     <p>Zoo: <%= @keeper.zoo.name %></p><br \>
 
-    <%= link_to "Edit this keeper", edit_zoo_keeper_path(current_user, @zoo,@keeper) %>
+    <%= link_to "Edit this keeper", edit_user_keeper_path(current_user, @keeper) %>
