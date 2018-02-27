@@ -3,4 +3,4 @@
         <li>Species: <%= @animal.species %></li>
         <li>Personality: <%= @animal.personality %></li>
     </ul><br>
-<%= link_to "Edit this Animal", edit_user_animal_path(@animal) %>
+<%= link_to "Edit this Animal", edit_user_animal_path(current_user, @animal) %>

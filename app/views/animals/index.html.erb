@@ -13,12 +13,10 @@
             <% end %>
             <% if zoo.animal_capacity_reached? %>
             <p></p>
-        <% else %>
+            <% else %>
             <%= link_to "Add a New Animal", new_user_animal_path(current_user) %>
+            <% end %>
         <% end %>
     <% end %>
         
-    <% end %>
-
-
                         

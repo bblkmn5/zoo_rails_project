@@ -3,12 +3,12 @@
     <p>Animals Hosted</p>
         <ul>
             <% @zoo.animals.each do |animal| %>
-                <li><%= link_to "#{animal.name}", user_animal_path(animal) %> </li>
+                <li><%= link_to "#{animal.name}", user_animal_path(current_user, animal) %> </li>
             <% end %>
             <% if @zoo.animal_capacity_reached? %>
                 <p>You have reached your animal limit!</p>
             <% else %>
-                <%= link_to "Add an Animal", new_user_animal_path(@zoo) %>
+                <%= link_to "Add an Animal", new_user_animal_path(current_user, @zoo) %>
             <% end %>
         </ul><br>
     <h4>Zoo Keeper Capacity: <%= @zoo.keeper_capacity %></h4>

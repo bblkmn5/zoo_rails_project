@@ -23,8 +23,12 @@ class User < ApplicationRecord
 
     def zoo_attributes=(zoo_attributes)
         self.zoo = Zoo.where(:name => zoo_attributes[:name]).first_or_create do |z|
-              z.animal_capacity = zoo_attributes[:animal_capacity]
-              z.keeper_capacity = zoo_attributes[:keeper_capacity]
+          z.each do |i, z_attributes|
+            self.zoos.build(z_attributes)
+          end
+              # z.user_id = zoo_attributes[:user_id]
+              # z.animal_capacity = zoo_attributes[:animal_capacity]
+              # z.keeper_capacity = zoo_attributes[:keeper_capacity]
         end
     end
 end

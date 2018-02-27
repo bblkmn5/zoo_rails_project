@@ -25,10 +25,10 @@ class ZoosController < ApplicationController
         @zoo = Zoo.new(zoo_params)
         @zoo.user_id = @user.id
         if @zoo.save
-            @user.update(zoo_id: @zoo.id)
-            current_user.update(zoo_id: @zoo.id)
+            # @user.update(zoo_id: @zoo.id)
+            # current_user.update(zoo_id: @zoo.id)
             
-            redirect_to user_zoo_path(@zoo)
+            redirect_to user_zoo_path(current_user, @zoo)
         elsif Zoo.where(name: @zoo.name).exists?
             flash[:notice] = "That Zoo already exists!"
             redirect_to user_path(@user)

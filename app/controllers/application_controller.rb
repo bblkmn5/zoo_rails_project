@@ -8,7 +8,9 @@ class ApplicationController < ActionController::Base
   private
 
   def user_is_current_user
-    unless current_user.id == params[:user_id].to_i
+    if (current_user.id == params[:user_id].to_i) || (current_user.zoo_ids.include?(params[:zoo_id]))
+        return true
+    else
       flash[:alert] = "You may only view your own zoo items."
       if current_user != nil
         redirect_to user_path(current_user)

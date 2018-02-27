@@ -7,4 +7,10 @@ class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
     end
+
+    private
+
+    def user_params
+        params.require(:user).permit(:name, :uid, :provider, :email, :password, :password_confirmation, zoo_attributes: [:name, :animal_capacity, :keeper_capacity, :user_id])
+    end
 end
