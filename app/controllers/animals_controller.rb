@@ -17,16 +17,16 @@ class AnimalsController < ApplicationController
 
     def create
         @animal = Animal.new(animal_params)
-        
         @zoo = Zoo.find_by(id: @animal.zoo_id)
-        binding.pry
+
         if @zoo.animal_capacity == @zoo.animals.count
             flash[:error] = "That Zoo cannot have anymore animals! Please choose a different zoo."
             redirect_to new_user_animal_path
         elsif @animal.save
-            redirect_to user_animals_path(current_user, @animal)
+            redirect_to user_zoo_path(current_user, @zoo)
         else
-            redirect_to root_path
+            flash[:error] = "Something went wrong. Please try again."
+            redirect_to new_user_animal_path
         end
     end
 

@@ -18,13 +18,15 @@ class KeepersController < ApplicationController
     def create
         @keeper = Keeper.new(keeper_params)
         @zoo = Zoo.find_by(id: @keeper.zoo_id)
+        
         if @zoo.keeper_capacity == @zoo.keepers.count
             flash[:error] = "That Zoo cannot have anymore keepers! Please choose a different zoo."
             redirect_to new_user_keeper_path
         elsif @keeper.save
-            redirect_to user_keepers_path(current_user, @keeper)
+            redirect_to user_zoo_path(current_user, @zoo)
         else
-            redirect_to root_path
+            flash[:error] = "Something went wrong. Please try again."
+            redirect_to new_user_keeper_path
         end
     end
 
