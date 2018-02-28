@@ -25,9 +25,6 @@ class User < ApplicationRecord
           z.each do |i, z_attributes|
             self.zoos.build(z_attributes)
           end
-              # z.user_id = zoo_attributes[:user_id]
-              # z.animal_capacity = zoo_attributes[:animal_capacity]
-              # z.keeper_capacity = zoo_attributes[:keeper_capacity]
         end
     end
 end

@@ -1,4 +1,4 @@
-<h2>Welcome <%=  current_user.name if current_user.name %>!</h2>
+<h2>Welcome <%= current_user.name if current_user.name %>!</h2>
     <h4>Your Email: <%= current_user.email %></h4><br>
     <% if current_user.zoos.present? %>
         <h3>Your Zoo(s)</h3>
