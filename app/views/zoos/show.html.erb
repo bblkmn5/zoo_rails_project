@@ -1,4 +1,4 @@
-<h1><%= link_to "Edit #{@zoo.name}", edit_user_zoo_path(current_user, @zoo) %></h1>
+<h1><%= @zoo.name %></h1>
     <h4>Animal Capacity: <%= @zoo.animal_capacity %></h4>
     <p>Animals Hosted</p>
         <ul>
@@ -23,3 +23,5 @@
                 <%= link_to "Add a Zoo Keeper", new_user_keeper_path(current_user, @zoo) %>
             <% end %>
         </ul>
+<br>
+<p><%= link_to "Edit Zoo", edit_user_zoo_path(current_user, @zoo) %></p>

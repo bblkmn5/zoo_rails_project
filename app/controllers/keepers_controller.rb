@@ -35,7 +35,7 @@ class KeepersController < ApplicationController
 
     def update
         if @keeper.update(keeper_params)
-            redirect_to keeper_path(@keeper)
+            redirect_to user_keeper_path(current_user, @keeper)
         else
             redirect_to edit_user_keeper_path(current_user, @keeper)
         end
@@ -54,7 +54,7 @@ class KeepersController < ApplicationController
     end
 
     def set_zoo
-        @zoo = Zoo.find(params[:id])
+        @zoo = Zoo.find_by(id: params[:id])
     end
 
     def keeper_params

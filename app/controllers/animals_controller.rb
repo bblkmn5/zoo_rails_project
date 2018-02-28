@@ -35,7 +35,7 @@ class AnimalsController < ApplicationController
 
     def update
         if @animal.update(animal_params)
-            redirect_to animal_path(@animal)
+            redirect_to user_animal_path(current_user, @animal)
         else
             redirect_to edit_user_animal_path(current_user, @animal)
         end
@@ -54,7 +54,7 @@ class AnimalsController < ApplicationController
     end
 
     def set_zoo
-        @zoo = Zoo.find(params[:id])
+        @zoo = Zoo.find_by(id: params[:id])
     end
     
     def animal_params
