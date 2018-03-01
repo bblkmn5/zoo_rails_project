@@ -1,17 +1,22 @@
 <h1>Other Zoos</h1>
-
 <% @zoos.each do |zoo| %>
-    <h3><%= zoo.name %></h3>
-    <h4>Zoo Keepers:</h4>
-        <% zoo.keepers.each do |keeper| %>
-            <ul>  
-                <li><%= keeper.name %></li>
-            </ul>
-        <% end %>
-    <h4>Zoo Animals:</h4> 
-        <% zoo.animals.each do |animal| %>
-            <ul>
-                <li><%= animal.name %> the <%= animal.species %></li> 
-            </ul>
-        <% end %><br />
+    <div>
+        <h3>--<%= zoo.name %></h3>
+        <div class="container">
+            <h4>Zoo Animals:</h4> 
+                <% zoo.animals.each do |animal| %>
+                    <ul>
+                        <li><%= animal.name %> the <%= animal.species %></li> 
+                    </ul>
+                <% end %>
+        </div>
+        <div class="container">
+            <h4>Zoo Keepers:</h4>
+                <% zoo.keepers.each do |keeper| %>
+                    <ul>  
+                        <li><%= keeper.name %></li>
+                    </ul>
+                <% end %>
+        </div>
+    </div>
 <% end %>

@@ -17,11 +17,27 @@
 /* Some Style from the Bootstrap Default Theme */
 
 body {
-    padding-top: 40px;
-    padding-bottom: 60 px;
+    padding-top: 10px;
     padding-left: 30px;
+    font-size: 24px;
+    background-color: beige;
+    height: 90%;
+}
+
+li {
+    font-size: 75%;
 }
 
 nav {
     font-size: 36px;
+}
+
+nav, main {
+ padding: 10px;   
+}
+
+footer {
+    padding: 25px 0px 0px 0px;
+    font-size: 65%;
+    color: blue;
 }

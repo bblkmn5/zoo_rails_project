@@ -1,17 +1,23 @@
 <h1>List of Zoo Keepers in Your Zoos</h1>
 <% if current_user.keepers.empty? %>
-    <p>Oh no, you have no Zoo Keepers! <%= link_to "Add a New Zoo Keeper", new_user_keeper_path %></p>
+    <p>Oh no, you have no Zoo Keepers!</p> 
+    <p><%= link_to "Add a New Zoo Keeper", new_user_keeper_path %></p>
 <% else %>
     <% current_user.zoos.each do |zoo| %>
-        <h2>Zoo: <%= link_to "#{zoo.name}", user_zoo_path(current_user, zoo) %></h2>
-        <% zoo.keepers.each do |keeper| %>
-            <h4>Zoo Keeper: <%= link_to "#{keeper.name}", user_keeper_path(current_user, keeper) %></h4>
-        <% end %>
-
-        <% if zoo.keeper_capacity_reached? %>
-            <p></p>
-        <% else %>
-            <%= link_to "Add a New Zoo Keeper", new_user_keeper_path(current_user) %>
-        <% end %>
+        <div>
+            <h2>Zoo: <%= link_to "#{zoo.name}", user_zoo_path(current_user, zoo) %></h2>
+            <% zoo.keepers.each do |keeper| %>
+                <div class="container">
+                    <ul>
+                        <li>Zoo Keeper: <%= link_to "#{keeper.name}", user_keeper_path(current_user, keeper) %></li>
+                    </ul>
+            <% end %>
+            <% if zoo.keeper_capacity_reached? %>
+                <p></p>
+            <% else %>
+                <h4><%= link_to "Add a New Zoo Keeper", new_user_keeper_path(current_user) %></h4>
+                </div>
+            <% end %><br>
+        </div>
     <% end %>
 <% end %>

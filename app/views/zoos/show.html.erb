@@ -1,5 +1,6 @@
 <h1><%= @zoo.name %></h1>
-    <h4>Animal Capacity: <%= @zoo.animal_capacity %></h4>
+    <h4><%= link_to "Edit Zoo", edit_user_zoo_path(current_user, @zoo) %></h4>
+    <h3>Animal Capacity: <%= @zoo.animal_capacity %></h3>
     <p>Animals Hosted</p>
         <ul>
             <% @zoo.animals.each do |animal| %>
@@ -11,7 +12,7 @@
                 <%= link_to "Add an Animal", new_user_animal_path(current_user, @zoo) %>
             <% end %>
         </ul><br>
-    <h4>Zoo Keeper Capacity: <%= @zoo.keeper_capacity %></h4>
+    <h3>Zoo Keeper Capacity: <%= @zoo.keeper_capacity %></h3>
     <p>Zoo Keepers Employed</p>
         <ul>
             <% @zoo.keepers.each do |keeper| %>
@@ -23,5 +24,3 @@
                 <%= link_to "Add a Zoo Keeper", new_user_keeper_path(current_user, @zoo) %>
             <% end %>
         </ul>
-<br>
-<p><%= link_to "Edit Zoo", edit_user_zoo_path(current_user, @zoo) %></p>

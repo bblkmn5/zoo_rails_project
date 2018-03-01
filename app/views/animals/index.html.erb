@@ -1,22 +1,27 @@
 <h1>List of Animals in Your Zoos</h1>
-    <% if current_user.animals.empty? %>
-        <p>Uh Oh, you have no Animals in your zoos!<p> <%= link_to "Add a New Animal", new_user_animal_path %><p>
-    <% else %>
-        <% current_user.zoos.each do |zoo| %>
+<% if current_user.animals.empty? %>
+    <p>Uh Oh, you have no Animals in your zoos!</p>
+    <p><%= link_to "Add a New Animal", new_user_animal_path %></p>
+<% else %>
+    <% current_user.zoos.each do |zoo| %>
+        <div>
             <h2>Zoo: <%= link_to "#{zoo.name}", user_zoo_path(current_user, zoo) %></h2>
             <% zoo.animals.each do |animal| %>
-                <h4>Animal: <%= link_to "#{animal.name}", user_animal_path(current_user, animal) %></h4>
-                <ul>
-                    <li>Species: <%= animal.species %></li>
-                    <li>Personality: <%= animal.personality %></li>
-                </ul>
+                <div class="container">
+                    <h4>Animal: <%= link_to "#{animal.name}", user_animal_path(current_user, animal) %></h4>
+                    <ul>
+                        <li>Species: <%= animal.species %></li>
+                        <li>Personality: <%= animal.personality %></li>
+                    </ul>
             <% end %>
             <% if zoo.animal_capacity_reached? %>
-            <p></p>
+                <p></p>
             <% else %>
-            <%= link_to "Add a New Animal", new_user_animal_path(current_user) %>
-            <% end %>
-        <% end %>
+                <h4><%= link_to "Add a New Animal", new_user_animal_path(current_user) %></h4>
+                </div>
+            <% end %><br>
+        </div>
     <% end %>
+<% end %>
         
                         
