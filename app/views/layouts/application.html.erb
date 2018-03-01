@@ -4,15 +4,16 @@
     <title>Zoo Rails Project</title>
     <%= csrf_meta_tags %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
-  <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
-  <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
-    <%= console %>
     <%= render '/layouts/header' %>
+    
+    <%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %>
+    <%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %>
+    <%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %>
+
     <%= yield %>
   </body>
 </html>
