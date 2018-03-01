@@ -2,7 +2,7 @@
     <div class="field">
         <%= f.label :name %>:
         <%= f.text_field :name %>
-    </div><br>
+    </div>
     <% if action == "create" %>
         <div class="field">
             <%= f.label :zoo_id, "Select which of your zoos this keeper belongs to"%>
@@ -12,9 +12,13 @@
         <div class="field">
             <%= f.hidden_field :zoo_id, value: keeper.zoo_id %>
         </div>
-    <% end %>
+    <% end %><br>
 
     <div class="actions">
-        <%= f.submit %>
+        <% if action == "create" %>
+            <%= f.submit "Create Keeper" %>
+        <% else %>
+            <%= f.submit "Update Keeper" %>
+        <% end %>
     </div>
-<% end %>
+<% end %><br>

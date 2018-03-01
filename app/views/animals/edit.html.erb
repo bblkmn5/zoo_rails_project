@@ -2,4 +2,4 @@
 
 <%= render partial: 'form', locals: {animal: @animal, zoo: @zoo, action: 'update'} %>
 
-<%= link_to "Set the Animal Free!", user_animal_path(current_user, @animal), method: :delete, data: {confirm: "Are you sure you want to set #{@animal.name} free?"} %>
+<%= link_to "Set the Animal Free!", user_animal_path(current_user, @animal), method: :delete, data: {confirm: "Are you sure you want to set #{@animal.name} free?"} %><br><br>

@@ -1,16 +1,16 @@
 <%= form_for animal, url: {action: action} do |f| %>
     <div class="field">
-        <%= f.label :name %>
+        <%= f.label :name %>:
         <%= f.text_field :name %>
     </div>
 
     <div class="field">
-        <%= f.label :species %>
+        <%= f.label :species %>:
         <%= f.text_field :species %>
     </div>
 
     <div class="field">
-        <%= f.label :personality %>
+        <%= f.label :personality %>:
         <%= f.text_field :personality %>
     </div>
 
@@ -23,9 +23,13 @@
         <div class="field">
             <%= f.hidden_field :zoo_id, value: animal.zoo_id %>
         </div>
-    <% end %>
+    <% end %><br>
 
-    <div class="actions">  
-        <%= f.submit "Save" %>
+    <div class="actions">
+        <%if action == "create" %>  
+            <%= f.submit "Create Animal" %>
+        <% else %>
+            <%= f.submit "Update Animal" %>
+        <% end %>
     </div>
-<% end %>
+<% end %><br>
