@@ -56,7 +56,7 @@ class ZoosController < ApplicationController
         Animal.where(zoo_id: @zoo.id).delete_all
         Keeper.where(zoo_id: @zoo.id).delete_all
         @zoo.delete
-        flash[:alert] = "After much consideration, you have decided to delete #{@zoo.name} and all of the inhabitants."
+        flash[:alert] = "After much consideration, you have decided to delete #{@zoo.name} and all of its inhabitants."
         redirect_to user_path(current_user)
     end
 

@@ -1,4 +1,4 @@
-<h1>Edit <%= @animal.name %></h1>
+<h1>Edit <%= @animal.name %> (currently at <%= @animal.zoo.name %>)</h1>
 
 <%= render partial: 'form', locals: {animal: @animal, zoo: @zoo, action: 'update'} %>
 

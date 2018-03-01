@@ -17,13 +17,12 @@ class AnimalsController < ApplicationController
 
     def create
         @animal = Animal.new(animal_params)
-        @zoo = Zoo.find_by(id: @animal.zoo_id)
 
-        if @zoo.animal_capacity == @zoo.animals.count
+        if zoo_spaces_full?
             flash[:error] = "That Zoo cannot have anymore animals! Please choose a different zoo."
             redirect_to new_user_animal_path
         elsif @animal.save
-            redirect_to user_zoo_path(current_user, @zoo)
+            redirect_to user_zoo_path(current_user, @animal.zoo)
         else
             flash[:error] = "Something went wrong. Please try again."
             redirect_to new_user_animal_path
@@ -34,7 +33,10 @@ class AnimalsController < ApplicationController
     end
 
     def update
-        if @animal.update(animal_params)
+        if zoo_spaces_full?
+            flash[:error] = "That Zoo cannot have anymore animals! Please choose a different zoo."
+            redirect_to edit_user_animal_path(current_user, @animal)
+        elsif @animal.update(animal_params)
             redirect_to user_animal_path(current_user, @animal)
         else
             redirect_to edit_user_animal_path(current_user, @animal)
@@ -55,6 +57,11 @@ class AnimalsController < ApplicationController
 
     def set_zoo
         @zoo = Zoo.find_by(id: params[:id])
+    end
+
+    def zoo_spaces_full?
+        zoo = Zoo.find_by(id: @animal.zoo_id)
+        zoo.animal_capacity == zoo.animals.count ? true : false
     end
     
     def animal_params

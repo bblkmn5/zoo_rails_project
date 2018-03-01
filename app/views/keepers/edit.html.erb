@@ -1,4 +1,4 @@
-<h1>Edit <%= @keeper.name %></h1>
+<h1>Edit <%= @keeper.name %> (Employee at <%= @keeper.zoo.name %>)</h1>
 
 <%= render partial: 'form', locals: {keeper: @keeper, zoo: @zoo, action: 'update'} %>
 

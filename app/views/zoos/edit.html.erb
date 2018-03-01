@@ -1,17 +1,22 @@
 <h1>Edit Your Zoo (<%= @zoo.name %>):</h1>
 
     <%= form_for @zoo, url: {action: 'update'} do |f| %>
-        <%= f.label :name %>
-        <%= f.text_field :name %><br />
-
-        <%= f.label :animal_capacity %>
-        <%= f.number_field :animal_capacity %><br />
-
-        <%= f.label :keeper_capacity %>
-        <%= f.number_field :keeper_capacity %><br />
-
-        <%= f.submit %>
+        <div class="field">
+            <%= f.label :name %>:
+            <%= f.text_field :name %>
+        </div>
+        <div class="field">
+            <%= f.label :animal_capacity %>:
+            <%= f.number_field :animal_capacity %>
+        </div>
+        <div class="field">
+            <%= f.label :keeper_capacity %>:
+            <%= f.number_field :keeper_capacity %><br><br>
+        </div>
+        <div class="actions">
+            <%= f.submit %>
+        </div>
     <% end %><br />
 
-<%= link_to "Delete Zoo", user_zoo_path(current_user, @zoo), method: :delete, data: {confirm: "Are you sure you want to delete your zoo and all of its inhabitants?"} %>
+<%= link_to "Delete Zoo", user_zoo_path(current_user, @zoo), method: :delete, data: {confirm: "Are you sure you want to delete your zoo and all of its inhabitants?"} %><br><br>
 

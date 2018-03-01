@@ -14,22 +14,18 @@
         <%= f.text_field :personality %>
     </div>
 
-    <% if action == "create" %>
-        <div class-"field">
-            <%= f.label :zoo_id, "Select which of your zoos this animal belongs to"%>
-            <%= f.collection_select :zoo_id, current_user.zoos, :id, :name %>
-        </div>
-    <% else %>
-        <div class="field">
-            <%= f.hidden_field :zoo_id, value: animal.zoo_id %>
-        </div>
-    <% end %><br>
+    <div class-"field">
+        <%= f.label :zoo_id, "Select which of your zoos this animal belongs to" %>
+        <%= f.collection_select :zoo_id, current_user.zoos, :id, :name %>
+    </div><br>
 
     <div class="actions">
         <%if action == "create" %>  
             <%= f.submit "Create Animal" %>
-        <% else %>
+        <% elsif action == "update" %>
             <%= f.submit "Update Animal" %>
+        <% else %>
+            <%= f.submit %>
         <% end %>
     </div>
 <% end %><br>

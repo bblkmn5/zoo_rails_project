@@ -2,7 +2,7 @@ class KeepersController < ApplicationController
     before_action :authenticate_user!
     before_action :set_keeper, only: [:show, :edit, :update, :destroy]
     before_action :user_is_current_user, only: [:show, :edit, :update, :destroy]
-    before_action :set_zoo, only: [:show, :edit, :update, :destroy]
+    before_action :set_zoo, only: [:show, :edit, :update]
 
     def index
         @keepers = Keeper.all 
@@ -17,13 +17,11 @@ class KeepersController < ApplicationController
 
     def create
         @keeper = Keeper.new(keeper_params)
-        @zoo = Zoo.find_by(id: @keeper.zoo_id)
-        
-        if @zoo.keeper_capacity == @zoo.keepers.count
+        if zoo_spaces_full?
             flash[:error] = "That Zoo cannot have anymore keepers! Please choose a different zoo."
             redirect_to new_user_keeper_path
         elsif @keeper.save
-            redirect_to user_zoo_path(current_user, @zoo)
+            redirect_to user_zoo_path(current_user, @keeper.zoo)
         else
             flash[:error] = "Something went wrong. Please try again."
             redirect_to new_user_keeper_path
@@ -34,7 +32,10 @@ class KeepersController < ApplicationController
     end
 
     def update
-        if @keeper.update(keeper_params)
+        if zoo_spaces_full?
+            flash[:error] = "That Zoo cannot have anymore keepers! Please choose a different zoo."
+            redirect_to edit_user_keeper_path(current_user, @keeper)
+        elsif @keeper.update(keeper_params)
             redirect_to user_keeper_path(current_user, @keeper)
         else
             redirect_to edit_user_keeper_path(current_user, @keeper)
@@ -55,6 +56,11 @@ class KeepersController < ApplicationController
 
     def set_zoo
         @zoo = Zoo.find_by(id: params[:id])
+    end
+
+    def zoo_spaces_full?
+        zoo = Zoo.find_by(id: @keeper.zoo_id)
+        zoo.keeper_capacity == zoo.keepers.count ? true : false
     end
 
     def keeper_params
