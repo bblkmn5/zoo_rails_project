@@ -4,21 +4,21 @@
     <p><%= link_to "Add a New Animal", new_user_animal_path(current_user) %></p>
 <% else %>
     <% current_user.zoos.each do |zoo| %>
-        <div>
+        <div class="container">
             <h2>Zoo: <%= link_to "#{zoo.name}", user_zoo_path(current_user, zoo) %></h2>
-            <% zoo.animals.each do |animal| %>
-                <div class="container">
+            <div class="container">
+                <% zoo.animals.each do |animal| %>
                     <h4>Animal: <%= link_to "#{animal.name}", user_animal_path(current_user, animal) %></h4>
                     <ul>
                         <li>Species: <%= animal.species %></li>
                         <li>Personality: <%= animal.personality %></li>
                     </ul>
-            <% end %><br>
+                <% end %><br>
+            </div>
             <% if zoo.animal_capacity_reached? %>
                 <p></p>
             <% else %>
                 <h4><%= link_to "Add a New Animal", new_user_animal_path(current_user, @zoo) %></h4>
-                </div>
             <% end %><br>
         </div>
     <% end %>

@@ -4,16 +4,18 @@
     <p><%= link_to "Add a New Zoo Keeper", new_user_keeper_path(current_user) %></p>
 <% else %>
     <% current_user.zoos.each do |zoo| %>
-        <h2>Zoo: <%= link_to "#{zoo.name}", user_zoo_path(current_user, zoo) %></h2>
-        <% zoo.keepers.each do |keeper| %>
+        <div class="container">
+            <h2>Zoo: <%= link_to "#{zoo.name}", user_zoo_path(current_user, zoo) %></h2>
             <div class="container">
-                <h4>Name: <%= link_to "#{keeper.name}", user_keeper_path(current_user, keeper) %></h4>
-        <% end %><br>
+                <% zoo.keepers.each do |keeper| %> 
+                    <h4>Name: <%= link_to "#{keeper.name}", user_keeper_path(current_user, keeper) %></h4>
+                <% end %><br>
+            </div>
         <% if zoo.keeper_capacity_reached? %>
             <p></p>
         <% else %>
             <h4><%= link_to "Add a New Zoo Keeper", new_user_keeper_path(current_user, @keeper) %></h4>
-            </div>
+        </div>
         <% end %><br>
     <% end %>
 <% end %>

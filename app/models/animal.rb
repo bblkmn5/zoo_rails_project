@@ -2,6 +2,7 @@ class Animal < ApplicationRecord
     belongs_to :zoo
     has_many :keepers, through: :zoo
 
+    validates :name, presence: true
     validates_uniqueness_of :name, scope: :species
     
     # def keepers_attributes=(keepers_attributes)
