@@ -1,7 +1,7 @@
 <h1>List of Animals in Your Zoos</h1>
 <% if current_user.animals.empty? %>
     <p>Uh Oh, you have no Animals in your zoos!</p>
-    <p><%= link_to "Add a New Animal", new_user_animal_path %></p>
+    <p><%= link_to "Add a New Animal", new_user_animal_path(current_user) %></p>
 <% else %>
     <% current_user.zoos.each do |zoo| %>
         <div>
@@ -17,7 +17,7 @@
             <% if zoo.animal_capacity_reached? %>
                 <p></p>
             <% else %>
-                <h4><%= link_to "Add a New Animal", new_user_animal_path(current_user) %></h4>
+                <h4><%= link_to "Add a New Animal", new_user_animal_path(current_user, @zoo) %></h4>
                 </div>
             <% end %><br>
         </div>
