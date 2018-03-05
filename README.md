@@ -24,5 +24,5 @@ and sign up by creating a manual account or using omniauth to sign in via Facebo
 Contributions are welcome through pull requests and issues reported.
 
 # License
-This Zoo Rails Project is releasued under an [MIT License](../zoo_rails_project/LICENSE).
+This Zoo Rails Project is releasued under an [MIT License](/LICENSE).
 
