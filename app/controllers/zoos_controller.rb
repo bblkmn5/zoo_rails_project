@@ -44,10 +44,10 @@ class ZoosController < ApplicationController
             flash[:notice] = "Successfully Updated #{@zoo.name}"
             redirect_to user_zoo_path(current_user, @zoo)
         elsif Zoo.where(name: @zoo.name).exists?
-            flash[:notice] = "That Zoo already exists!"
-            redirect_to edit_user_zoo_path(current_user, @zoo)
+            flash[:error] = "That Zoo already exists!"
+            redirect_to edit_user_zoo_path(current_user, @zoo) 
         else
-            flash[:notice] = "Hm.. Something went wrong"
+            flash[:error] = "Hm.. Something went wrong"
             redirect_to edit_user_zoo_path(current_user, @zoo)
         end
     end
