@@ -17,10 +17,12 @@ class KeepersController < ApplicationController
 
     def create
         @keeper = Keeper.new(keeper_params)
+
         if zoo_spaces_full?
             flash[:error] = "That Zoo cannot have anymore keepers! Please choose a different zoo."
             redirect_to new_user_keeper_path
         elsif @keeper.save
+            flash[:notice] = "Successfully added #{@keeper.name}."
             redirect_to user_zoo_path(current_user, @keeper.zoo)
         else
             flash[:error] = "Something went wrong. Please try again."
@@ -36,6 +38,7 @@ class KeepersController < ApplicationController
             flash[:error] = "That Zoo cannot have anymore keepers! Please choose a different zoo."
             redirect_to edit_user_keeper_path(current_user, @keeper)
         elsif @keeper.update(keeper_params)
+            flash[:notice] = "Successfully updated #{@keeper.name}"
             redirect_to user_keeper_path(current_user, @keeper)
         else
             redirect_to edit_user_keeper_path(current_user, @keeper)

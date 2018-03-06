@@ -5,12 +5,20 @@
             <%= f.text_field :name, class: "form-control" %>
         </div>
         <div class="field">
-            <%= f.label :animal_capacity, "How many Animals Can You Fit?" %>
-            <%= f.number_field :animal_capacity, min: "#{zoo.animals.count}", class: "form-control" %>
+            <%= f.label :animal_capacity, "How many Animals can you fit?" %>
+            <% if action == "create" %>
+                <%= f.number_field :animal_capacity, min: 1, class: "form-control" %>
+            <% elsif action == "update" %>
+                <%= f.number_field :animal_capacity, min: "#{zoo.animals.count}", class: "form-control" %>
+            <% end %>
         </div>
         <div class="field">
-            <%= f.label :keeper_capacity, "How many Zoo Keepers Can You Employ?" %>
-            <%= f.number_field :keeper_capacity, min: "#{zoo.keepers.count}", class: "form-control" %>
+            <%= f.label :keeper_capacity, "How many Zoo Keepers can you employ?" %>
+            <% if action == "create" %>
+                <%= f.number_field :keeper_capacity, min: 1, class: "form-control" %>
+            <% elsif action == "update" %>
+                <%= f.number_field :keeper_capacity, min: "#{zoo.keepers.count}", class: "form-control" %>
+            <% end %>
         </div><br>
     </div>
     <% if action == "create" %>

@@ -1,11 +1,11 @@
 <h1>Welcome <%= current_user.name if current_user.name %>!</h1>
     <h4>Your Email: <%= current_user.email %></h4><br>
     <% if current_user.zoos.present? %>
-        <h2>Your Zoo<%= "(s)" if current_user.zoos.count > 1 %>:</h2>
+        <h2>Your Zoo<%= "s" if current_user.zoos.count > 1 %>:</h2>
         <% current_user.zoos.each do |zoo| %>
             <h3><%= link_to "#{zoo.name}", user_zoo_path(current_user, zoo) %></h3>
         <% end %><br>
-        <h4><%= link_to "Own another zoo? Click here to create a new zoo", new_user_zoo_path(current_user) %></h4>
+        <h4><%= link_to "Own another zoo? Click here to create a new zoo!", new_user_zoo_path(current_user) %></h4>
     <% else %>
         <%= link_to "First things first. Click here to create your zoo!", new_user_zoo_path(current_user) %><br>
     <% end %>

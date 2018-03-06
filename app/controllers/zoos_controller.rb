@@ -24,14 +24,13 @@ class ZoosController < ApplicationController
         @zoo = Zoo.new(zoo_params)
         @zoo.user_id = current_user.id
         if @zoo.save
+            flash[:notice] = "Successfully added #{@zoo.name}."
             redirect_to user_zoo_path(current_user, @zoo)
-
         elsif Zoo.where(name: @zoo.name).exists?
             flash[:error] = "That Zoo already exists!"
             redirect_to user_path(current_user)
-            
         else
-            flash[:alert] = "You need to fill out everything in the form!"
+            flash[:error] = "You need to fill out everything in the form!"
              redirect_to new_user_zoo_path(current_user)
         end
     end
@@ -41,7 +40,7 @@ class ZoosController < ApplicationController
 
     def update
         if @zoo.update(zoo_params)
-            flash[:notice] = "Successfully Updated #{@zoo.name}"
+            flash[:notice] = "Successfully updated #{@zoo.name}."
             redirect_to user_zoo_path(current_user, @zoo)
         elsif Zoo.where(name: @zoo.name).exists?
             flash[:error] = "That Zoo already exists!"
@@ -56,7 +55,7 @@ class ZoosController < ApplicationController
         Animal.where(zoo_id: @zoo.id).delete_all
         Keeper.where(zoo_id: @zoo.id).delete_all
         @zoo.delete
-        flash[:alert] = "After much consideration, you have decided to delete #{@zoo.name} and all of its inhabitants."
+        flash[:alert] = "After much consideration, you have decided to cut off ties with #{@zoo.name} and all of its inhabitants."
         redirect_to user_path(current_user)
     end
 

@@ -22,6 +22,7 @@ class AnimalsController < ApplicationController
             flash[:error] = "That Zoo cannot have anymore animals! Please choose a different zoo."
             redirect_to new_user_animal_path
         elsif @animal.save
+            flash[:notice] = "Successfully added #{@animal.name}."
             redirect_to user_zoo_path(current_user, @animal.zoo)
         else
             flash[:error] = "Something went wrong. Please try again."
@@ -37,6 +38,7 @@ class AnimalsController < ApplicationController
             flash[:error] = "That Zoo cannot have anymore animals! Please choose a different zoo."
             redirect_to edit_user_animal_path(current_user, @animal)
         elsif @animal.update(animal_params)
+            flash[:notice] = "Successfully updated #{@animal.name}."
             redirect_to user_animal_path(current_user, @animal)
         else
             redirect_to edit_user_animal_path(current_user, @animal)

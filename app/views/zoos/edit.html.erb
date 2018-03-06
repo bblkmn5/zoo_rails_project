@@ -2,5 +2,5 @@
 
 <%= render partial: 'form', locals: {zoo: @zoo, action: 'update'} %><br>
 
-<%= link_to "Delete Zoo", user_zoo_path(current_user, @zoo), method: :delete, data: {confirm: "Are you sure you want to delete your zoo and all of its inhabitants?"} %><br><br>
+<%= link_to "Delete Zoo", user_zoo_path(current_user, @zoo), method: :delete, data: {confirm: "Are you sure you want to delete your zoo and all of its inhabitants? This cannot be undone!"} %><br><br>
 
