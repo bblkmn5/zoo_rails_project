@@ -9,6 +9,7 @@ class AnimalsController < ApplicationController
     end
 
     def show
+        @comment = Comment.new
     end
 
     def new
@@ -67,6 +68,6 @@ class AnimalsController < ApplicationController
     end
     
     def animal_params
-        params.require(:animal).permit(:name, :species, :personality, :zoo_id)
+        params.require(:animal).permit(:name, :species, :personality, :zoo_id, comments_attributes: [:notes])
     end
 end

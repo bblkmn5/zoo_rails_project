@@ -10,7 +10,9 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resources :zoos
-    resources :animals
+    resources :animals do
+      resources :comments
+    end
     resources :keepers
   end
 end

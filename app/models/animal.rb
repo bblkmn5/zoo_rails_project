@@ -1,9 +1,11 @@
 class Animal < ApplicationRecord
     belongs_to :zoo
     has_many :keepers, through: :zoo
+    has_many :comments
 
     validates :name, presence: true
     validates_uniqueness_of :name, scope: :species
+    accepts_nested_attributes_for :comments
     
     # def keepers_attributes=(keepers_attributes)
     #     keepers_attributes.each do |keeper_attributes|
