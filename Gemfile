@@ -53,6 +53,10 @@ gem 'omniauth-github'
 gem 'omniauth-facebook'
 gem 'dotenv-rails'
 
+gem 'active_model_serializers', '0.10.6'
+gem 'jquery-rails'
+
+
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
