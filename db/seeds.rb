@@ -6,29 +6,28 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!([
-    {name: "Ben", password: "123456", password_confirmation: "123456", zoo_id: 1, email: "ben@ben.com"}, 
-    
-    {name: "Alice", password: "654321", password_confirmation: "654321", zoo_id: 2, email: "alice@alice.com"}
+  { name: 'Ben', password: '123456', password_confirmation: '123456', zoo_id: 1, email: 'ben@ben.com' },
+  { name: 'Alice', password: '654321', password_confirmation: '654321', zoo_id: 2, email: 'alice@alice.com' }
 ])
 
 Zoo.create!([
-    {name: "Best Zoo Ever", animal_capacity: 5, keeper_capacity: 5, user_id: 1},
+  { name: 'Best Zoo Ever', animal_capacity: 5, keeper_capacity: 5, user_id: 1 },
 
-    {name: "Second Best Zoo Ever", animal_capacity: 2, keeper_capacity: 2, user_id: 2}
+  { name: 'Second Best Zoo Ever', animal_capacity: 2, keeper_capacity: 2, user_id: 2 }
 ])
 
 Animal.create!([
-    {name: "Shasta", species: "Cheetah", personality: "playful", zoo_id: 1},
+  { name: 'Shasta', species: 'Cheetah', personality: 'playful', zoo_id: 1 },
 
-    {name: "Rocky", species: "Rhino", personality: "quiet", zoo_id: 2}
+  { name: 'Rocky', species: 'Rhino', personality: 'quiet', zoo_id: 2 }
 ])
 
 Keeper.create!([
-    {name: "Katie", zoo_id: 1}, 
+    { name: 'Katie', zoo_id: 1 }, 
     
-    {name: "Bob", zoo_id: 2}, 
+    { name: 'Bob', zoo_id: 2 }, 
     
-    {name: "Hans", zoo_id: 2}
+    { name: 'Hans', zoo_id: 2 }
 ])
 
 
