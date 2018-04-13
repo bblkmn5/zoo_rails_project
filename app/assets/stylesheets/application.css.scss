@@ -17,39 +17,39 @@
 /* Some Style from the Bootstrap Default Theme */
 
 body {
-    padding-top: 10px;
-    padding-left: 30px;
-    font-size: 24px;
-    background-color: beige;
-    height: 90%;
+  padding-top: 10px;
+  padding-left: 30px;
+  font-size: 24px;
+  background-color: beige;
+  height: 90%;
 }
 
 li {
-    font-size: 75%;
+  font-size: 75%;
 }
 
 nav {
-    font-size: 36px;
+  font-size: 36px;
 }
 
 nav, main {
- padding: 10px;   
+  padding: 10px;   
 }
 
 #flash_error {
-    background-color: red;
+  background-color: red;
 }
 
 #flash_alert {
-    background-color: yellow;
+  background-color: yellow;
 }
 
 #flash_notice {
-    background-color: lightgreen;
+  background-color: lightgreen;
 }
 
 footer {
-    padding: 25px 0px 0px 0px;
-    font-size: 65%;
-    color: blue;
+  padding: 25px 0px 0px 0px;
+  font-size: 65%;
+  color: blue;
 }

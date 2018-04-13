@@ -1,67 +1,66 @@
 <%= form_for zoo, url: {action: action} do |f| %>
-    <div class="container">
-        <div class="field">
-            <%= f.label :name, "What is the name of your Zoo?" %>
-            <%= f.text_field :name, class: "form-control" %>
-        </div>
-        <div class="field">
-            <%= f.label :animal_capacity, "How many Animals can you fit?" %>
-            <% if action == "create" %>
-                <%= f.number_field :animal_capacity, min: 1, class: "form-control" %>
-            <% elsif action == "update" %>
-                <%= f.number_field :animal_capacity, min: "#{zoo.animals.count}", class: "form-control" %>
-            <% end %>
-        </div>
-        <div class="field">
-            <%= f.label :keeper_capacity, "How many Zoo Keepers can you employ?" %>
-            <% if action == "create" %>
-                <%= f.number_field :keeper_capacity, min: 1, class: "form-control" %>
-            <% elsif action == "update" %>
-                <%= f.number_field :keeper_capacity, min: "#{zoo.keepers.count}", class: "form-control" %>
-            <% end %>
-        </div><br>
+  <div class="container">
+    <div class="field">
+      <%= f.label :name, "What is the name of your Zoo?" %>
+      <%= f.text_field :name, class: "form-control" %>
     </div>
-    <% if action == "create" %>
-        <%= f.fields_for :animals do |animal_builder| %>
-            <fieldset>
-                <h2>Add an Animal to your Zoo!</h2>
-                <div class="container">
-                    <div class="field">
-                        <%= animal_builder.label :name %>
-                        <%= animal_builder.text_field :name, class: "form-control" %>
-                    </div>
-                    <div class="field">
-                        <%= animal_builder.label :species %>
-                        <%= animal_builder.text_field :species, class: "form-control" %>
-                    </div>
-                    <div class="field">
-                        <%= animal_builder.label :personality %>
-                        <%= animal_builder.text_field :personality, class: "form-control" %>
-                    </div>
-                    <div class="field">
-                        <%= animal_builder.hidden_field :zoo_id, value: @zoo.id %>
-                    </div>
-                </div>
-            </fieldset>
-        <% end %><br>
+    <div class="field">
+      <%= f.label :animal_capacity, "How many Animals can you fit?" %>
+      <% if action == "create" %>
+        <%= f.number_field :animal_capacity, min: 1, class: "form-control" %>
+      <% elsif action == "update" %>
+        <%= f.number_field :animal_capacity, min: "#{zoo.animals.count}", class: "form-control" %>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.label :keeper_capacity, "How many Zoo Keepers can you employ?" %>
+      <% if action == "create" %>
+        <%= f.number_field :keeper_capacity, min: 1, class: "form-control" %>
+      <% elsif action == "update" %>
+        <%= f.number_field :keeper_capacity, min: "#{zoo.keepers.count}", class: "form-control" %>
+      <% end %>
+    </div><br>
+  </div>
+  <% if action == "create" %>
+    <%= f.fields_for :animals do |animal_builder| %>
+        <fieldset>
+          <h2>Add an Animal to your Zoo!</h2>
+          <div class="container">
+            <div class="field">
+              <%= animal_builder.label :name %>
+              <%= animal_builder.text_field :name, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= animal_builder.label :species %>
+              <%= animal_builder.text_field :species, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= animal_builder.label :personality %>
+              <%= animal_builder.text_field :personality, class: "form-control" %>
+            </div>
+            <div class="field">
+              <%= animal_builder.hidden_field :zoo_id, value: @zoo.id %>
+            </div>
+          </div>
+        </fieldset>
+    <% end %><br>
 
-        <%= f.fields_for :keepers do |keeper_builder|%>
-            <fieldset>
-                <h2>Add a Keeper to your Zoo!</h2>
-                <div class="container">
-                    <div class="field">
-                        <%= keeper_builder.label :name %>
-                        <%= keeper_builder.text_field :name, class: "form-control" %>
-                    </div>
-                    <div class="field">
-                        <%= keeper_builder.hidden_field :zoo_id, value: @zoo.id %>
-                    </div>
-                </div>
-            </fieldset>
-        <% end %>   
-    <% end %>
+    <%= f.fields_for :keepers do |keeper_builder|%>
+      <fieldset>
+        <h2>Add a Keeper to your Zoo!</h2>
+        <div class="container">
+          <div class="field">
+            <%= keeper_builder.label :name %>
+            <%= keeper_builder.text_field :name, class: "form-control" %>
+          </div>
+          <div class="field">
+            <%= keeper_builder.hidden_field :zoo_id, value: @zoo.id %>
+          </div>
+        </div>
+      </fieldset>
+    <% end %>   
+  <% end %>
 <%= hidden_field :user_id, value: current_user.id %><br>
 
 <%= f.submit %>
-
 <% end %>

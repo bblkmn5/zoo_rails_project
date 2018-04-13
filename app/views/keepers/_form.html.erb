@@ -1,20 +1,20 @@
 <%= form_for keeper, url: {action: action} do |f| %>
-    <div class="field">
-        <%= f.label :name %>:
-        <%= f.text_field :name %>
-    </div>
-    <div class="field">
-        <%= f.label :zoo_id, "Select which of your zoos this keeper belongs to" %>
-        <%= f.collection_select :zoo_id, current_user.zoos, :id, :name %>
-    </div><br>
+  <div class="field">
+    <%= f.label :name %>:
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :zoo_id, "Select which of your zoos this keeper belongs to" %>
+    <%= f.collection_select :zoo_id, current_user.zoos, :id, :name %>
+  </div><br>
 
-    <div class="actions">
-        <% if action == "create" %>
-            <%= f.submit "Create Keeper" %>
-        <% elsif action == "update" %>
-            <%= f.submit "Update Keeper" %>
-        <% else %>
-            <%= f.submit %>
-        <% end %>
-    </div>
+  <div class="actions">
+    <% if action == "create" %>
+      <%= f.submit "Create Keeper" %>
+    <% elsif action == "update" %>
+      <%= f.submit "Update Keeper" %>
+    <% else %>
+      <%= f.submit %>
+    <% end %>
+  </div>
 <% end %><br>

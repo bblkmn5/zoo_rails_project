@@ -1,30 +1,30 @@
 <h1><%= @zoo.name %></h1>
-    <h4><%= link_to "Edit Zoo", edit_user_zoo_path(current_user, @zoo) %></h4>
-    <h4>Animal Capacity: <%= @zoo.animal_capacity %></h4>
-        <div class="container">
-            <h3>Animals Hosted</h3>
-                <ul>
-                    <% @zoo.animals.each do |animal| %>
-                        <li><%= link_to "#{animal.name}", user_animal_path(current_user, animal) %> </li>
-                    <% end %>
-                </ul>
-                    <% if @zoo.animal_capacity_reached? %>
-                        <p>You have reached your animal limit!</p>
-                    <% else %>
-                        <h4><%= link_to "Add an Animal", new_user_animal_path(current_user, @zoo) %></h4>
-                    <% end %>
-                <br>
-            </div>
-    <h4>Zoo Keeper Capacity: <%= @zoo.keeper_capacity %></h4>
-        <div class="container">
+  <h4><%= link_to "Edit Zoo", edit_user_zoo_path(current_user, @zoo) %></h4>
+  <h4>Animal Capacity: <%= @zoo.animal_capacity %></h4>
+  <div class="container">
+    <h3>Animals Hosted</h3>
+      <ul>
+        <% @zoo.animals.each do |animal| %>
+          <li><%= link_to "#{animal.name}", user_animal_path(current_user, animal) %> </li>
+        <% end %>
+      </ul>
+          <% if @zoo.animal_capacity_reached? %>
+              <p>You have reached your animal limit!</p>
+          <% else %>
+            <h4><%= link_to "Add an Animal", new_user_animal_path(current_user, @zoo) %></h4>
+          <% end %><br>
+  </div>
+  <h4>Zoo Keeper Capacity: <%= @zoo.keeper_capacity %></h4>
+  <div class="container">
     <h3>Zoo Keepers Employed</h3>
-        <ul>
-            <% @zoo.keepers.each do |keeper| %>
-                <li><%= link_to "#{keeper.name} ", user_keeper_path(current_user, keeper) %></li>
-            <% end %>
-        </ul>
-            <% if @zoo.keeper_capacity_reached? %>
-                <p>You have reached your keeper limit!</p>
-            <% else %>
-                <h4><%= link_to "Add a Zoo Keeper", new_user_keeper_path(current_user, @zoo) %></h4>
-            <% end %><br>
+    <ul>
+      <% @zoo.keepers.each do |keeper| %>
+        <li><%= link_to "#{keeper.name} ", user_keeper_path(current_user, keeper) %></li>
+      <% end %>
+    </ul>
+    <% if @zoo.keeper_capacity_reached? %>
+      <p>You have reached your keeper limit!</p>
+    <% else %>
+      <h4><%= link_to "Add a Zoo Keeper", new_user_keeper_path(current_user, @zoo) %></h4>
+    <% end %><br>
+  </div>

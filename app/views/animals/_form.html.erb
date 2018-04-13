@@ -1,31 +1,31 @@
 <%= form_for animal, url: {action: action} do |f| %>
-    <div class="field">
-        <%= f.label :name %>:
-        <%= f.text_field :name %>
-    </div>
+  <div class="field">
+    <%= f.label :name %>:
+    <%= f.text_field :name %>
+  </div>
 
-    <div class="field">
-        <%= f.label :species %>:
-        <%= f.text_field :species %>
-    </div>
+  <div class="field">
+    <%= f.label :species %>:
+    <%= f.text_field :species %>
+  </div>
 
-    <div class="field">
-        <%= f.label :personality %>:
-        <%= f.text_field :personality %>
-    </div>
+  <div class="field">
+    <%= f.label :personality %>:
+    <%= f.text_field :personality %>
+  </div>
 
-    <div class-"field">
-        <%= f.label :zoo_id, "Select which of your zoos this animal belongs to" %>
-        <%= f.collection_select :zoo_id, current_user.zoos, :id, :name %>
-    </div><br>
+  <div class-"field">
+    <%= f.label :zoo_id, "Select which of your zoos this animal belongs to" %>
+    <%= f.collection_select :zoo_id, current_user.zoos, :id, :name %>
+  </div><br>
 
-    <div class="actions">
-        <%if action == "create" %>  
-            <%= f.submit "Create Animal" %>
-        <% elsif action == "update" %>
-            <%= f.submit "Update Animal" %>
-        <% else %>
-            <%= f.submit %>
-        <% end %>
-    </div>
+  <div class="actions">
+    <%if action == "create" %>  
+      <%= f.submit "Create Animal" %>
+    <% elsif action == "update" %>
+      <%= f.submit "Update Animal" %>
+    <% else %>
+      <%= f.submit %>
+    <% end %>
+  </div>
 <% end %><br>
