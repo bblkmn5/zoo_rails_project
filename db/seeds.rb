@@ -19,17 +19,15 @@ Zoo.create!([
 Animal.create!([
   { name: 'Shasta', species: 'Cheetah', personality: 'playful', zoo_id: 1 },
 
-  { name: 'Rocky', species: 'Rhino', personality: 'quiet', zoo_id: 2 }
+  { name: 'Rocky', species: 'Rhino', personality: 'quiet', zoo_id: 2 },
+
+  { name: 'Cathryn', species: 'Lemur', personality: 'Mischevious', zoo_id: 1 }
 ])
 
 Keeper.create!([
-    { name: 'Katie', zoo_id: 1 }, 
-    
-    { name: 'Bob', zoo_id: 2 }, 
-    
+    { name: 'Katie', zoo_id: 1 },
+
+    { name: 'Bob', zoo_id: 2 },
+
     { name: 'Hans', zoo_id: 2 }
 ])
-
-
-
-

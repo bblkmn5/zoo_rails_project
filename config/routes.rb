@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'users/all_animals' => 'animals#index', as: 'all_animals'
   get 'users/all_keepers' => 'keepers#index', as: 'all_keepers'
 
+  get 'animals/:id/animal_data', to: 'animals#animal_data'
+
   resources :users, only: [:show] do
     resources :zoos
     resources :animals do
@@ -14,4 +16,6 @@ Rails.application.routes.draw do
     end
     resources :keepers
   end
+
+  resources :animals
 end

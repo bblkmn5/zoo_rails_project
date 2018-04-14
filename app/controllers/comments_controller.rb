@@ -1,5 +1,10 @@
 # Feature added to zookeepers
 class CommentsController < ApplicationController
+  def show
+    @comment = Comment.find(params[:id])
+    render json: @comment, status: 200
+  end
+
   def new
     @comment = Comment.new
   end

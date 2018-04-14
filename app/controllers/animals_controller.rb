@@ -3,14 +3,21 @@ class AnimalsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_animal, only: %i[show edit update destroy]
   before_action :user_is_current_user, only: %i[show edit update destroy]
-  before_action :set_zoo, only: %i[show edit update]
+  before_action :set_zoo, only: %i[show body edit update]
 
   def index
     @animals = Animal.all
   end
 
+  def body
+    animal = Animal.find(params[:id])
+    render json: AnimalSerializer.serialize(animal)
+  end
+
   def show
     @comment = Comment.new
+    render json: @animal.to_json(only: %i[name id personality species],
+                                 include: [comment: { only: [:notes]}])
   end
 
   def new
@@ -66,7 +73,7 @@ class AnimalsController < ApplicationController
     zoo = Zoo.find_by(id: @animal.zoo_id)
     zoo.animal_capacity == zoo.animals.count
   end
-  
+
   def animal_params
     params.require(:animal).permit(:name, :species, :personality, :zoo_id, comments_attributes: [:notes])
   end
