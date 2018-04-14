@@ -12,7 +12,12 @@ class ZoosController < ApplicationController
   #     @zoos = Zoo.all
   # end
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @zoo }
+    end
+  end
 
   def new
     @zoo = Zoo.new

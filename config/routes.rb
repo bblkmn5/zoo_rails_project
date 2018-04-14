@@ -16,6 +16,6 @@ Rails.application.routes.draw do
     end
     resources :keepers
   end
-
-  resources :animals
+  resources :zoos, only: [:show]
+  resources :animals, only: [:show]
 end

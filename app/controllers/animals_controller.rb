@@ -9,15 +9,17 @@ class AnimalsController < ApplicationController
     @animals = Animal.all
   end
 
-  def body
+  def animal_data
     animal = Animal.find(params[:id])
     render json: AnimalSerializer.serialize(animal)
   end
 
   def show
     @comment = Comment.new
-    render json: @animal.to_json(only: %i[name id personality species],
-                                 include: [comment: { only: [:notes]}])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @animal.to_json(only: %i[name id personality species], include: [zoo: { only: [:name] }]) }
+    end
   end
 
   def new

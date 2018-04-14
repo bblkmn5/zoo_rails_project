@@ -1,14 +1,14 @@
-<h1><%= @animal.name %></h1>
+<div class="zooName"><h1><%= @animal.zoo.name %></h1></div>
+<a href="#" class="js-next" data-id="<%= @animal.id %>">Next...</a>
+<h1 class="animalName"><%= @animal.name %></h1>
+<p class="animalSpecies">Species: <%= @animal.species %></p>
+<p class="animalPersonality">Personality: <%= @animal.personality %></p>
+<p class="animalNotes">Notes: </p> 
+<% @animal.comments.each do |comment| %>
   <ul>
-    <li>Species: <%= @animal.species %></li>
-    <li>Personality: <%= @animal.personality %></li>
-    <li>Notes: </li>
-    <% @animal.comments.each do |comment| %>
-      <ul>
-        <li><%= comment.notes %></li>
-      </ul>
-    <% end %>
-  </ul><br>
+    <li class="animalNotes"><%= comment.notes %></li>
+  </ul>
+<% end %>
 
 <%= link_to "Edit this Animal", edit_user_animal_path(current_user, @animal) %><br>
 
@@ -20,4 +20,20 @@
     <%= f.text_area :notes %>
     <%= f.submit "Add Note" %>
   <% end %>
-    
+
+  <script type="text/javascript" charset="utf-8">
+  $(function () {
+    $(".js-next").on("click", function () {
+      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+      $.get("/animals/" + nextId + ".json", function (data) {
+        $(".zooName").text(data["zoo"]["name"]);
+        $(".animalName").text(data["name"]);
+        $(".animalSpecies").text(data["species"]);
+        $(".animalPersonality").text(data["personality"]);
+        $(".animalNotes").text(data["notes"][]);
+        // re-set the id to current on link
+        $(".js-next").attr("data-id", data["id"]);
+      });
+    });
+  });
+</script>

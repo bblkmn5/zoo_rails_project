@@ -32,8 +32,8 @@
 $(function () {
   $(".js-more").on('click', function() {
     var id = $(this).data("id");
-    $.get("/users/" + id + "/animals/" + id + "/body", function(data) {
-      $("#body-" + id).text(data);
+    $.get("/animals/" + id + "/animal_data", function(data) {
+      $("#body-" + id).html(data["name"]);
     });
   });
 });
