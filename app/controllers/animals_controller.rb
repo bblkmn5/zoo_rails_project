@@ -9,10 +9,10 @@ class AnimalsController < ApplicationController
     @animals = Animal.all
   end
 
-  def animal_data
-    animal = Animal.find(params[:id])
-    render json: AnimalSerializer.serialize(animal)
-  end
+  # def animal_data
+  #   animal = Animal.find(params[:id])
+  #   render json: AnimalSerializer.serialize(animal)
+  # end
 
   def show
     @comment = Comment.new

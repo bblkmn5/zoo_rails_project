@@ -32,7 +32,7 @@
 $(function () {
   $(".js-more").on('click', function() {
     var id = $(this).data("id");
-    $.get("/animals/" + id + "/animal_data", function(data) {
+    $.get("/animals/" + id + ".json", function(data) {
       $("#body-" + id).html(data["name"]);
     });
   });
