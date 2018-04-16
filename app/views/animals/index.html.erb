@@ -5,13 +5,13 @@
 <% else %>
   <% current_user.zoos.each do |zoo| %>
     <div class="container">
-      <h2>Zoo: <%= link_to "#{zoo.name}", user_zoo_path(current_user, zoo) %></h2>
+      <h2 class="zooName">Zoo: <%= link_to "#{zoo.name}", user_zoo_path(current_user, zoo) %></h2>
       <div class="container">
         <% zoo.animals.each do |animal| %>
-          <h4>Animal: <%= link_to "#{animal.name}", user_animal_path(current_user, animal) %></h4>
+          <h4 class="animalName">Animal: <%= link_to "#{animal.name}", user_animal_path(current_user, animal) %></h4>
             <ul>
-                <li>Species: <%= animal.species %></li>
-                <li>Personality: <%= animal.personality %></li>
+                <li class="animalSpecies">Species: <%= animal.species %></li>
+                <li class="animalPersonality">Personality: <%= animal.personality %></li>
             </ul>
         <% end %><br>
       </div>
@@ -32,8 +32,9 @@
 $(function () {
   $(".js-more").on('click', function() {
     var id = $(this).data("id");
-    $.get("/animals/" + id + ".json", function(data) {
-      $("#body-" + id).html(data["name"]);
+    $.get("/users/" + currentUser.id + "/animals/" + id + ".json", function(data) {
+      $("#body-" + id).html(data["animalName"]);
+      $("#body-" + id).html(data["animalSpecies"]);
     });
   });
 });

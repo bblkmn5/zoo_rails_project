@@ -18,4 +18,9 @@
   
   </body>
   <%= render 'layouts/footer' %>
+  <script type="text/javascript">
+    window.currentUser = {
+      id : "<%= current_user.id if current_user %>"
+    }
+  </script>
 </html>
