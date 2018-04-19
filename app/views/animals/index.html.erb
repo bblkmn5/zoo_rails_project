@@ -9,10 +9,8 @@
       <div class="container">
         <% zoo.animals.each do |animal| %>
           <h4 class="animalName">Animal: <%= link_to "#{animal.name}", user_animal_path(current_user, animal) %></h4>
-            <ul>
-                <li class="animalSpecies">Species: <%= animal.species %></li>
-                <li class="animalPersonality">Personality: <%= animal.personality %></li>
-            </ul>
+          <button class="js-more" data-id="<%= animal.id %>">More Info</button>
+            <ul id="animal-<%= animal.id %>-comments"></ul>
         <% end %><br>
       </div>
       <% if zoo.animal_capacity_reached? %>
@@ -32,9 +30,10 @@
 $(function () {
   $(".js-more").on('click', function() {
     var id = $(this).data("id");
-    $.get("/users/" + currentUser.id + "/animals/" + id + ".json", function(data) {
-      $("#body-" + id).html(data["animalName"]);
-      $("#body-" + id).html(data["animalSpecies"]);
+    $.get("/users/" + <%= current_user.id %> + "/animals/" + id + ".json", function(data) {
+      var animal = data;
+      $("#animal-" + id).html(data["species"]);
+      
     });
   });
 });

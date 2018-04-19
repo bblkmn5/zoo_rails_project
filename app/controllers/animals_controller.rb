@@ -18,7 +18,7 @@ class AnimalsController < ApplicationController
     @comment = Comment.new
     respond_to do |format|
       format.html { render :show }
-      format.json { render json: @animal.to_json(only: %i[name id personality species], include: [zoo: { only: [:name] }]) }
+      format.json { render json: @animal, status: 200 }
     end
   end
 
