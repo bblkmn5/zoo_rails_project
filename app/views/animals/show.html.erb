@@ -1,5 +1,5 @@
 <div class="zooName"><h1><%= @animal.zoo.name %></h1></div>
-<a href="#" class="js-next" data-id="<%= @animal.id %>">Next...</a>
+<a href="#" class="js-next" data-id="<%= @animal.id %>">Next Animal...</a>
 <h1 class="animalName"><%= @animal.name %></h1>
 <p class="animalSpecies">Species: <%= @animal.species %></p>
 <p class="animalPersonality">Personality: <%= @animal.personality %></p>
@@ -24,13 +24,13 @@
   <script type="text/javascript" charset="utf-8">
   $(function () {
     $(".js-next").on("click", function () {
-      var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-      $.get("/users/" + <%= current_user.id %> + "/animals/" + nextId + ".json", function (data) {
-        $(".zooName").text(data["zoo"]["name"]);
-        $(".animalName").text(data["name"]);
-        $(".animalSpecies").text(data["species"]);
-        $(".animalPersonality").text(data["personality"]);
-        $(".animalNotes").text(data["notes"]);
+      var id = $(this).data("id");
+      // parseInt($(".js-next").attr("data-id")) - 1;
+      $.get("/users/" + <%= current_user.id %> + "/animals/" + id + ".json", function (data) {
+        $(".animalName").html(data["name"]);
+        $(".animalSpecies").html(data["species"]);
+        $(".animalPersonality").html(data["personality"]);
+        $(".animalNotes").html(data["comments"][]);
         // re-set the id to current on link
         $(".js-next").attr("data-id", data["id"]);
       });
