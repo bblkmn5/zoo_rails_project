@@ -1,3 +1,24 @@
 <h1>Add New Animal</h1><br>
 
 <%= render partial: 'form', locals: {animal: @animal, action: 'create'} %>
+
+<div id="animalResult">
+  <h2 id="animalName"></h2>
+  <span id="animalSpecies"></span>
+  <p id="animalPersonality"></p>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $('form').submit(function(event) {
+    event.preventDefault();
+    var values = $(this).serialize();
+    var posting = $.post('/users/' + <%= current_user.id %> + '/animals', values);
+    posting.done(function(data) {
+      var animal = data;
+      var animalTraits = "<h2>Name: " + animal["name"] + "</h2><p>Species: " + animal["species"] + "</p><p>Personality: " + animal["personality"] + "</p>";
+      $("#animalResult").html(animalTraits);
+    });
+  });
+});
+</script>

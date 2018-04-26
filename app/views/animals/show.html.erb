@@ -27,10 +27,10 @@
       var id = $(this).data("id");
       // parseInt($(".js-next").attr("data-id")) - 1;
       $.get("/users/" + <%= current_user.id %> + "/animals/" + id + ".json", function (data) {
-        $(".animalName").html(data["name"]);
-        $(".animalSpecies").html(data["species"]);
-        $(".animalPersonality").html(data["personality"]);
-        $(".animalNotes").html(data["comments"][]);
+        $(".animalName").text(data["name"]);
+        $(".animalSpecies").text(data["species"]);
+        $(".animalPersonality").text(data["personality"]);
+        $(".animalNotes").text(data["comments"][]);
         // re-set the id to current on link
         $(".js-next").attr("data-id", data["id"]);
       });

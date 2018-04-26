@@ -28,13 +28,13 @@ class AnimalsController < ApplicationController
 
   def create
     @animal = Animal.new(animal_params)
-
+    
     if zoo_spaces_full?
       flash[:error] = 'That Zoo cannot have anymore animals! Please choose a different zoo.'
       redirect_to new_user_animal_path
     elsif @animal.save
       flash[:notice] = "Successfully added #{@animal.name}."
-      redirect_to user_zoo_path(current_user, @animal.zoo)
+      render json: @animal, status: 201
     else
       flash[:error] = 'Something went wrong. Please try again.'
       redirect_to new_user_animal_path
