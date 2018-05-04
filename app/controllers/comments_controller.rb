@@ -14,7 +14,8 @@ class CommentsController < ApplicationController
     @comment.keeper_id = @comment.animal.zoo.keepers.first.id
     if @comment.save
       flash[:notice] = 'Successfully added comment.'
-      redirect_to user_animal_path(current_user, @comment.animal_id)
+      render json: @comment, status: 201
+      # redirect_to user_animal_path(current_user, @comment.animal_id)
     else
       flash[:error] = 'Nope.'
       redirect_to user_animal_path(current_user, @animal.id)

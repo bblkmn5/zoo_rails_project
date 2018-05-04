@@ -14,7 +14,7 @@
 
   <h2><%= "Add a note for #{@animal.name}!" %></h2><br>
 
-  <%= form_for ([current_user, @animal, Comment.new]) do |f| %>
+  <%= form_for ([current_user, @animal, @comment]) do |f| %>
     <%= f.hidden_field :animal_id, value: @animal.id %>
     <%= f.label :notes %><br>
     <%= f.text_area :notes %>
@@ -25,14 +25,29 @@
   $(function () {
     $(".js-next").on("click", function () {
       var id = $(this).data("id");
-      // parseInt($(".js-next").attr("data-id")) - 1;
-      $.get("/users/" + <%= current_user.id %> + "/animals/" + id + ".json", function (data) {
+      let nextID = parseInt($(".js-next").attr("data-id"));
+      $.get("/users/" + <%= current_user.id %> + "/animals/" + nextID + ".json", function (data) {
         $(".animalName").text(data["name"]);
         $(".animalSpecies").text(data["species"]);
         $(".animalPersonality").text(data["personality"]);
-        $(".animalNotes").text(data["comments"][]);
+        $(".animalNotes").text(data["comments"]);
         // re-set the id to current on link
         $(".js-next").attr("data-id", data["id"]);
+      });
+    });
+  });
+</script>
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $('form').off('submit');
+    $('form').on('submit', function(e) {
+      e.preventDefault();
+      let values = $(this).serialize();
+      let posting = $.post("/users/" + <%= current_user.id %> + "/animals/" + <%= @animal.id %> + '/comments', values);
+
+      posting.done(function(data) {
+        let comment = data;
+        $("#animalNotes").text(comment["notes"]);
       });
     });
   });

@@ -15,6 +15,7 @@ class AnimalsController < ApplicationController
   # end
 
   def show
+    @comments = @animal.comments
     @comment = Comment.new
     respond_to do |format|
       format.html { render :show }
