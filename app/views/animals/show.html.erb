@@ -3,10 +3,10 @@
 <h1 class="animalName"><%= @animal.name %></h1>
 <p class="animalSpecies">Species: <%= @animal.species %></p>
 <p class="animalPersonality">Personality: <%= @animal.personality %></p>
-<p class="animalNotes">Notes: </p> 
-<% @animal.comments.each do |comment| %>
+<p>Notes: </p> 
+<% @comments.each do |comment| %>
   <ul>
-    <li class="animalNotes"><%= comment.notes %></li>
+    <li><%= comment.notes %></li>
   </ul>
 <% end %>
 
@@ -47,7 +47,7 @@
 
       posting.done(function(data) {
         let comment = data;
-        $("#animalNotes").text(comment["notes"]);
+        $(".animalNotes").text(comment["notes"]);
       });
     });
   });

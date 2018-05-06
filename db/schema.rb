@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20180308194527) do
 
   create_table "comments", force: :cascade do |t|
     t.string "notes"
-    t.integer "keeper_id"
     t.integer "animal_id"
   end
 

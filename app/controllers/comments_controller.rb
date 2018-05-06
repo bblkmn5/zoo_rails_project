@@ -11,7 +11,6 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
-    @comment.keeper_id = @comment.animal.zoo.keepers.first.id
     if @comment.save
       flash[:notice] = 'Successfully added comment.'
       render json: @comment, status: 201
