@@ -7,13 +7,12 @@
 <p>Notes: </p> 
 <%= render 'comments/comments' %>
 
-<%= link_to "Edit this Animal", edit_user_animal_path(current_user, @animal) %><br>
+<%= link_to "Edit this Animal", edit_user_animal_path(current_user, @animal) %><br><br>
 
-  <h2><%= "Add a note for #{@animal.name}!" %></h2><br>
+  <h2><%= "Add a note for #{@animal.name}!" %></h2>
 
   <%= form_for ([current_user, @animal, @comment]) do |f| %>
     <%= f.hidden_field :animal_id, value: @animal.id %>
-    <%= f.label :notes %><br>
     <%= f.text_area :notes %>
     <%= f.submit "Add Note" %>
   <% end %>

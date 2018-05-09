@@ -3,11 +3,17 @@ class Animal < ApplicationRecord
   belongs_to :zoo
   has_many :keepers, through: :zoo
   has_many :comments
+  before_save :titlelize_params
 
   validates :name, presence: true
   validates_uniqueness_of :name, scope: :species
   accepts_nested_attributes_for :comments
 
+  def titlelize_params
+    self.name = self.name.titleize
+    self.personality = self.personality.titleize 
+    self.species = self.species.titleize
+  end
   # def keepers_attributes=(keepers_attributes)
   #     keepers_attributes.each do |keeper_attributes|
   #         self.keepers.build(keeper_attributes)
