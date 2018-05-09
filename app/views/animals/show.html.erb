@@ -3,12 +3,9 @@
 <h1 class="animalName"><%= @animal.name %></h1>
 <p class="animalSpecies">Species: <%= @animal.species %></p>
 <p class="animalPersonality">Personality: <%= @animal.personality %></p>
+
 <p>Notes: </p> 
-<% @comments.each do |comment| %>
-  <ul>
-    <li><%= comment.notes %></li>
-  </ul>
-<% end %>
+<%= render 'comments/comments' %>
 
 <%= link_to "Edit this Animal", edit_user_animal_path(current_user, @animal) %><br>
 
@@ -37,9 +34,8 @@
     });
   });
 </script>
-<script type="text/javascript" charset="utf-8">
-  $(function() {
-    $('form').off('submit');
+<!--<script type="text/javascript" charset="utf-8">
+  $(function() {}
     $('form').on('submit', function(e) {
       e.preventDefault();
       let values = $(this).serialize();

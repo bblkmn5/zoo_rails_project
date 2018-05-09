@@ -1,27 +1,44 @@
 # Feature added to zookeepers
 class CommentsController < ApplicationController
-  def show
-    @comment = Comment.find(params[:id])
-    render json: @comment, status: 200
-  end
+  before_action :set_animal
+  # def index
+  #   @comments = @animal.comments
+    
+  #   respond_to do |format|
+  #     format.html {render 'index.html', layout: false}
+  #     format.js {render 'index.js', layout: false}
+  #   end
+  #   #  render json: @comment, status: 200
+  # end
 
   def new
     @comment = Comment.new
   end
 
   def create
-    @comment = Comment.new(comment_params)
+    @comment = @animal.comments.build(comment_params)
     if @comment.save
       flash[:notice] = 'Successfully added comment.'
-      render json: @comment, status: 201
-      # redirect_to user_animal_path(current_user, @comment.animal_id)
+      #render json: @comment, status: 201
+      redirect_to user_animal_path(current_user, @animal)
     else
-      flash[:error] = 'Nope.'
+      flash[:error] = 'Something went wrong. Please try again.'
       redirect_to user_animal_path(current_user, @animal.id)
     end
   end
 
+  def destroy
+    
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to user_animal_path(current_user, @animal)
+  end
+
   private
+
+  def set_animal
+    @animal = Animal.find(params[:animal_id])
+  end
 
   def comment_params
     params.require(:comment).permit(:notes, :animal_id)
