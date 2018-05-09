@@ -4,8 +4,10 @@
 <p class="animalSpecies">Species: <%= @animal.species %></p>
 <p class="animalPersonality">Personality: <%= @animal.personality %></p>
 
-<p>Notes: </p> 
-<%= render 'comments/comments' %>
+<p>Notes: </p>
+<div class="comments"> 
+  <%= render 'comments/comments' %>
+</div>
 
 <%= link_to "Edit this Animal", edit_user_animal_path(current_user, @animal) %><br><br>
 
@@ -14,10 +16,10 @@
   <%= form_for ([current_user, @animal, @comment]) do |f| %>
     <%= f.hidden_field :animal_id, value: @animal.id %>
     <%= f.text_area :notes %>
-    <%= f.submit "Add Note" %>
+    <p><%= f.submit "Add Note", data: { disable_with: false }%></p>
   <% end %>
 
-  <script type="text/javascript" charset="utf-8">
+  <!--<script type="text/javascript" charset="utf-8">
   $(function () {
     $(".js-next").on("click", function () {
       var id = $(this).data("id");
@@ -32,18 +34,39 @@
       });
     });
   });
-</script>
-<!--<script type="text/javascript" charset="utf-8">
-  $(function() {}
-    $('form').on('submit', function(e) {
+</script> -->
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    $('#new_comment').on('submit', function(e) {
       e.preventDefault();
-      let values = $(this).serialize();
-      let posting = $.post("/users/" + <%= current_user.id %> + "/animals/" + <%= @animal.id %> + '/comments', values);
+      url = this.action
+      console.log(url)
 
-      posting.done(function(data) {
-        let comment = data;
-        $(".animalNotes").text(comment["notes"]);
+      data = {
+        'authenticity_token': $("input[name='authenticity_token']").val(),
+        'comment': {
+          'notes': $("#comment_notes").val()
+        }
+      };
+
+      $.ajax({
+        type: "POST",
+        url: url,
+        data: data,
+        success: function(response){
+          $("#comment_notes").val("");
+          let $ol = $("div.comments ol");
+          $ol.append(response);
+        }
       });
+
+      // let values = $(this).serialize();
+      // let posting = $.post("/users/" + <%= current_user.id %> + "/animals/" + <%= @animal.id %> + '/comments', values);
+
+      // posting.done(function(data) {
+      //   let comment = data;
+      //   $(".animalNotes").text(comment["notes"]);
+      // });
     });
   });
 </script>

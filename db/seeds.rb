@@ -17,9 +17,9 @@ Zoo.create!([
 ])
 
 Animal.create!([
-  { name: 'Shasta', species: 'Cheetah', personality: 'playful', zoo_id: 1 },
+  { name: 'Shasta', species: 'Cheetah', personality: 'Playful', zoo_id: 1 },
 
-  { name: 'Rocky', species: 'Rhino', personality: 'quiet', zoo_id: 2 },
+  { name: 'Rocky', species: 'Rhino', personality: 'Quiet', zoo_id: 2 },
 
   { name: 'Cathryn', species: 'Lemur', personality: 'Mischevious', zoo_id: 1 }
 ])

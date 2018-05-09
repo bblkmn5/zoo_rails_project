@@ -1,15 +1,15 @@
 # Feature added to zookeepers
 class CommentsController < ApplicationController
   before_action :set_animal
-  # def index
-  #   @comments = @animal.comments
+  def index
+    @comments = @animal.comments
     
-  #   respond_to do |format|
-  #     format.html {render 'index.html', layout: false}
-  #     format.js {render 'index.js', layout: false}
-  #   end
-  #   #  render json: @comment, status: 200
-  # end
+    respond_to do |format|
+      format.html {render 'index.html', layout: false}
+      format.js {render 'index.js', layout: false}
+    end
+    #  render json: @comment, status: 200
+  end
 
   def new
     @comment = Comment.new
@@ -19,8 +19,9 @@ class CommentsController < ApplicationController
     @comment = @animal.comments.build(comment_params)
     if @comment.save
       flash[:notice] = 'Successfully added comment.'
-      #render json: @comment, status: 201
-      redirect_to user_animal_path(current_user, @animal)
+      render 'comments/show', layout: false
+      # render json: @comment, status: 201
+      # redirect_to user_animal_path(current_user, @animal)
     else
       flash[:error] = 'Something went wrong. Please try again.'
       redirect_to user_animal_path(current_user, @animal.id)

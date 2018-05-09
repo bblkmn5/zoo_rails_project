@@ -1,5 +1,5 @@
-<% @animal.comments.each do |comment| %>
-  <ul>
+<ol>
+  <% @animal.comments.each do |comment| %>
     <li><%= comment.notes %> <%= link_to "(delete)", user_animal_comment_path(current_user, @animal.id, comment.id), method: :delete %></li>
-  </ul>
-<% end %>
+  <% end %>
+</ol>
