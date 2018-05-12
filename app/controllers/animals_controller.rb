@@ -3,7 +3,7 @@ class AnimalsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_animal, only: %i[show edit update destroy]
   before_action :user_is_current_user, only: %i[show edit update destroy]
-  before_action :set_zoo, only: %i[show body edit update]
+  before_action :set_zoo, only: %i[show edit update]
 
   def index
     @animals = Animal.all
@@ -69,7 +69,7 @@ class AnimalsController < ApplicationController
   end
 
   def set_zoo
-    @zoo = Zoo.find_by(id: params[:id])
+    @zoo = Zoo.find_by(id: params[:zoo_id])
   end
 
   def zoo_spaces_full?

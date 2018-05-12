@@ -1,7 +1,6 @@
 <div class="zooName"><h1><%= @animal.zoo.name %></h1></div>
-<a href="#" class="js-next" data-id="<%= @animal.id %>">Next Animal...</a>
-<h1 class="animalName"><%= @animal.name %></h1>
-<p class="animalSpecies">Species: <%= @animal.species %></p>
+<a href="#" class="js-next" data-id="<%= @animal.id %>" zoo-data-id="<%= @animal.zoo_id %>">Next Animal...</a>
+<h1 class="animalName"><%= @animal.name %> the <%= @animal.species %></h1>
 <p class="animalPersonality">Personality: <%= @animal.personality %></p>
 
 <p>Notes: </p>
@@ -16,25 +15,9 @@
   <%= form_for ([current_user, @animal, @comment]) do |f| %>
     <%= f.hidden_field :animal_id, value: @animal.id %>
     <%= f.text_area :notes %>
-    <p><%= f.submit "Add Note", data: { disable_with: false }%></p>
+    <p><%= f.submit "Add Note", data: { disable_with: false } %></p>
   <% end %>
 
-  <!--<script type="text/javascript" charset="utf-8">
-  $(function () {
-    $(".js-next").on("click", function () {
-      var id = $(this).data("id");
-      let nextID = parseInt($(".js-next").attr("data-id"));
-      $.get("/users/" + <%= current_user.id %> + "/animals/" + nextID + ".json", function (data) {
-        $(".animalName").text(data["name"]);
-        $(".animalSpecies").text(data["species"]);
-        $(".animalPersonality").text(data["personality"]);
-        $(".animalNotes").text(data["comments"]);
-        // re-set the id to current on link
-        $(".js-next").attr("data-id", data["id"]);
-      });
-    });
-  });
-</script> -->
 <script type="text/javascript" charset="utf-8">
   $(function() {
     $('#new_comment').on('submit', function(e) {
@@ -59,14 +42,6 @@
           $ol.append(response);
         }
       });
-
-      // let values = $(this).serialize();
-      // let posting = $.post("/users/" + <%= current_user.id %> + "/animals/" + <%= @animal.id %> + '/comments', values);
-
-      // posting.done(function(data) {
-      //   let comment = data;
-      //   $(".animalNotes").text(comment["notes"]);
-      // });
     });
   });
 </script>

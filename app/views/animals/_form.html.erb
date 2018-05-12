@@ -21,7 +21,7 @@
 
   <div class="actions">
     <%if action == "create" %>  
-      <%= f.submit "Create Animal" %>
+      <%= f.submit "Create Animal", data: { disable_with: false } %>
     <% elsif action == "update" %>
       <%= f.submit "Update Animal" %>
     <% else %>

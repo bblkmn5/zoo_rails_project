@@ -11,6 +11,11 @@ class CommentsController < ApplicationController
     #  render json: @comment, status: 200
   end
 
+  def show
+    @comment = Comment.find(params[:id])
+  end
+
+
   def new
     @comment = Comment.new
   end
@@ -18,7 +23,6 @@ class CommentsController < ApplicationController
   def create
     @comment = @animal.comments.build(comment_params)
     if @comment.save
-      flash[:notice] = 'Successfully added comment.'
       render 'comments/show', layout: false
       # render json: @comment, status: 201
       # redirect_to user_animal_path(current_user, @animal)
@@ -29,16 +33,16 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    
     @comment = Comment.find(params[:id])
     @comment.destroy
+    flash[:notice] = 'Comment deleted'
     redirect_to user_animal_path(current_user, @animal)
   end
 
   private
 
   def set_animal
-    @animal = Animal.find(params[:animal_id])
+    @animal = Animal.find_by(id: params[:animal_id])
   end
 
   def comment_params

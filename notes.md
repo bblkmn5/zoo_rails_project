@@ -13,3 +13,28 @@ FORM to create new resource and render response without page refresh
 
 JS Model Object. One Method on Prototype and add function to add another feature
     Not sure..
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    $(".js-next").on("click", function () {
+      var id = $(this).data("id");
+      let nextID = parseInt($(".js-next").attr("data-id"));
+      $.get("/users/" + <%= current_user.id %> + "/animals/" + nextID + ".json", function (data) {
+        $(".animalName").text(data["name"]);
+        $(".animalSpecies").text(data["species"]);
+        $(".animalPersonality").text(data["personality"]);
+        $(".animalNotes").text(data["comments"]);
+        // re-set the id to current on link
+        $(".js-next").attr("data-id", data["id"]);
+      });
+    });
+  });
+</script>
+
+let values = $(this).serialize();
+let posting = $.post("/users/" + <%= current_user.id %> + "/animals/" + <%= @animal.id %> + '/comments', values);
+
+posting.done(function(data) {
+  let comment = data;
+  $(".animalNotes").text(comment["notes"]);
+});
