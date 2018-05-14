@@ -9,7 +9,12 @@ class KeepersController < ApplicationController
     @keepers = Keeper.all
   end
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @keeper, status: 200 }
+    end
+  end
 
   def new
     @keeper = Keeper.new
