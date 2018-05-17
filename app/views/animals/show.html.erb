@@ -1,71 +1,22 @@
 <div class="zooName"><h1><%= @animal.zoo.name %></h1></div>
 <a href="#" class="js-next" data-id="<%= @animal.id %>" data-zoo-id="<%= @animal.zoo.id %>">Next Animal...</a>
 <div class="animalNext">
-  <%= render 'animal' %>
-</div>
-<h1 class="animalName"><%= @animal.name %> the <%= @animal.species %></h1>
-<p class="animalPersonality">Personality: <%= @animal.personality %></p>
+  <h1 class="animalName"><%= @animal.name %> the <%= @animal.species %></h1>
+  <p class="animalPersonality">Personality: <%= @animal.personality %></p>
 
-<p>Notes: </p>
-<div class="comments"> 
-  <%= render 'comments/comments' %>
+  <p>Notes: </p>
+    <%= link_to "Load Comments", user_animal_comments_path(current_user, @animal, @comment), class: "load_comments" %>
+
+  <div class="comments">
+    <%= render 'comments/comments' %>
+  </div>
 </div>
 
 <%= link_to "Edit this Animal", edit_user_animal_path(current_user, @animal) %><br><br>
 
-  <h2><%= "Add a note for #{@animal.name}!" %></h2>
-
-  <%= form_for ([current_user, @animal, @comment]) do |f| %>
-    <%= f.hidden_field :animal_id, value: @animal.id %>
-    <%= f.text_area :notes %>
-    <p><%= f.submit "Add Note", data: { disable_with: false } %></p>
-  <% end %>
-<script>
-  $(function () {
-    $.get('http://localhost:3000/users/' + <%= current_user.id %> + "/zoos/" + <%= @animal.zoo_id %> + ".json", function(data){
-        console.log(data);
-        debugger;
-      });
-    $(".js-next").on("click", function () {
-      let id = $(this).data("id");
-
-      let nextID = parseInt($(".js-next").attr("data-zoo-id"));
-      
-      $.get("/users/" + <%= current_user.id %> + "/zoos/" + nextID + ".json", function (data) {
-        $(".animalName").text(data["name"]);
-        $(".animalSpecies").text(data["species"]);
-        $(".animalPersonality").text(data["personality"]);
-        $(".animalNotes").text(data["comments"]);
-        // re-set the id to current on link
-        $(".js-next").attr("data-id", data["id"]);
-      });
-    });
-  });
-</script>
-<script type="text/javascript" charset="utf-8">
-  $(function() {
-    $('#new_comment').on('submit', function(e) {
-      e.preventDefault();
-      url = this.action
-      console.log(url)
-
-      data = {
-        'authenticity_token': $("input[name='authenticity_token']").val(),
-        'comment': {
-          'notes': $("#comment_notes").val()
-        }
-      };
-
-      $.ajax({
-        type: "POST",
-        url: url,
-        data: data,
-        success: function(response){
-          $("#comment_notes").val("");
-          let $ol = $("div.comments ol");
-          $ol.append(response);
-        }
-      });
-    });
-  });
-</script>
+<h2><%= "Add a note for #{@animal.name}!" %></h2>
+<%= form_for ([current_user, @animal, @comment]) do |f| %>
+  <%= f.hidden_field :animal_id, value: @animal.id %>
+  <%= f.text_area :notes %>
+  <p><%= f.submit "Add Note", data: { disable_with: false } %></p>
+<% end %>

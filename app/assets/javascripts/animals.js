@@ -1,15 +1,41 @@
-// $(function() {
-//   $("a.load_comments").on("click", function(e) {
-//     //Fire ajax
-//     $.ajax({
-//       method: "GET",
-//       url: this.href
-//     }).done(function(response) {
-//       console.log(response);
-//     });
-//     // get response
+$(function() {
+  $("a.load_comments").on("click", function(e) {
+    
+    $.get(this.href).success(function(response){
+      var $ol = $("div.comments ol");
+      $ol.html("")
 
-//     //load response
-//     e.preventDefault();
-//   });
-// });
+      response.forEach(function(comment){
+        $ol.append("<li>" + comment.notes + "</li>");
+      })
+    })
+    
+    //Requesting HTML
+    // $.get(this.href).success(function(response){
+    //   $("div.comments").html(response)
+    // })
+    e.preventDefault();
+  })
+});
+
+$(function(){
+  $("form#new_comment").on("submit", function(e){
+    e.preventDefault();
+    $.post(this.action, $(this).serialize())  .done(function(response){
+      $("#comment_notes").val("");
+        var $ol = $("div.comments ol");
+        $ol.append(response);
+    })
+    // $.ajax({
+    //   type: "POST",
+    //   url: this.action,
+    //   data: $(this).serialize(),
+    //   success: function(response) {
+    //     $("#comment_notes").val("");
+    //     var $ol = $("div.comments ol");
+    //     $ol.append(response);
+    //   }
+    // });
+
+  })
+});
