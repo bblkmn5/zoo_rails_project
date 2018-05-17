@@ -9,7 +9,7 @@
       <div class="container">
         <% zoo.animals.each do |animal| %>
           <h3 class="animalName">Animal: <%= link_to "#{animal.name}", user_animal_path(current_user, animal) %></h3>
-          <button class="js-more" data-id="<%= animal.id %>">More Info</button>
+          <button class="js-more" data-id="<%= animal.id %>" data-user-id="<%= current_user.id %>">More Info</button>
             <ul id="animal-<%= animal.id %>"></ul>
         <% end %><br>
       </div>
@@ -21,17 +21,3 @@
     </div>
   <% end %>
 <% end %>
-
-<script type="text/javascript" charset="utf-8">
-$(function () {
-  $(".js-more").on('click', function() {
-    $(this).hide();
-    var id = $(this).data("id");
-    $.get("/users/" + <%= current_user.id %> + "/animals/" + id + ".json", function(data) {
-      var animal = data;
-      var animalTraits = "<p>Species: " + animal["species"] + "</p><p>Personality: " + animal["personality"] + "</p>";
-      $("#animal-" + id).html(animalTraits);
-    });
-  });
-});
-</script>
