@@ -1,7 +1,7 @@
 <div class="zooName"><h1><%= @animal.zoo.name %></h1></div>
-<a href="#" class="js-next" data-id="<%= @animal.id %>" data-zoo-id="<%= @animal.zoo.id %>">Next Animal...</a>
+<a href="#" class="js-next" data-id="<%= @animal.id %>" data-user-id ="<%= current_user.id %>" data-zoo-id="<%= @animal.zoo.id %>">Next Animal...</a>
 <div class="animalNext">
-  <h1 class="animalName"><%= @animal.name %> the <%= @animal.species %></h1>
+  <h1 class="animalTraits"><%= @animal.name %> the <%= @animal.species %></h1>
   <p class="animalPersonality">Personality: <%= @animal.personality %></p>
 
   <p>Notes: </p>

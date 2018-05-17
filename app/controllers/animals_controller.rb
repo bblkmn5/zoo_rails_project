@@ -9,7 +9,7 @@ class AnimalsController < ApplicationController
     @animals = Animal.all
     respond_to do |format|
       format.html { render :index }
-      format.json { render json: @animal }
+      format.json { render json: @animals }
     end
   end
 
