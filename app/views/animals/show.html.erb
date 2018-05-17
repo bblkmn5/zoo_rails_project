@@ -5,8 +5,6 @@
   <p class="animalPersonality">Personality: <%= @animal.personality %></p>
 
   <p>Notes: </p>
-    <%= link_to "Load Comments", user_animal_comments_path(current_user, @animal, @comment), class: "load_comments" %>
-
   <div class="comments">
     <%= render 'comments/comments' %>
   </div>

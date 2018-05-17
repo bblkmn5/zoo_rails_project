@@ -21,7 +21,10 @@ class CommentsController < ApplicationController
   def create
     @comment = @animal.comments.build(comment_params)
     if @comment.save
-      render 'comments/show', layout: false
+      respond_to do |format|
+        format.html { render :show, layout: false}
+        format.json { render json: @comment }
+      end
       #  redirect_to user_animal_path(current_user, @animal)
     else
       flash[:error] = 'Something went wrong. Please try again.'

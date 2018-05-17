@@ -35,7 +35,7 @@ class AnimalsController < ApplicationController
       redirect_to new_user_animal_path
     elsif @animal.save
       flash[:notice] = "Successfully added #{@animal.name}."
-      render json: @animal, status: 201
+      redirect_to user_animal_path(current_user, @animal)
     else
       flash[:error] = 'Something went wrong. Please try again.'
       redirect_to new_user_animal_path
