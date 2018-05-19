@@ -1,3 +1,21 @@
+function Animal(attributes) {
+  this.id = attributes.id;
+  this.name = attributes.name;
+  this.species = attributes.species;
+  this.personality = attributes.personality;
+  this.comments = attributes.comments;
+}
+
+// Animal.ready = function(){
+  
+// }
+
+Animal.prototype.renderAnimal = function(){
+  const animalHTML = `<li>${this.name} the ${this.species}</li>`
+  return animalHTML;
+}
+
+
 $(function() {
   $(".js-more").on('click', function() {
     $(this).hide();
@@ -10,32 +28,33 @@ $(function() {
           return `<li>${comment.notes}</li>`
         })
       // console.log(animalComments) 
-      let animalTraits = `<p>Species: ${animal.species}</p><p>Personality: ${animal.personality}</p><p>Notes: <ol>${animalComments.toString().replace(/,/g , '')}</ol>`;
+      let animalTraits = `<p>Species: ${animal.species}</p><p>Personality: ${animal.personality}</p><p>Notes: `
+      if (animal.comments < 1)
+        animalTraits += "You have no notes for this animal!</p>"
+      else
+        animalTraits += `<ol>${animalComments.toString().replace(/,/g , '')}</ol>`;
       $("#animal-" + id).html(animalTraits);
       })
     });
-
-  $("#new_comment").on("submit", function(e) {
-    e.preventDefault();
-    let $form = $(this);
-    let action = $form.attr("action");
-    let params = $form.serialize();
-
-    $.post(action, params)
-    .done(response => {
-      $("#comment_notes").val("");
-        let $ol = $("div.comments ol");
-        $ol.append(response);
-    })
-    // low-level ajax
-    // $.ajax({
-    //   type: "POST",
-    //   url: this.action,
-    //   data: $(this).serialize(),
-    //   success: function(response) {
-    //     $("#comment_notes").val("");
-    //     var $ol = $("div.comments ol");
-    //     $ol.append(response);
-    //   }
-  });
 });
+
+$(function() {
+  $("button.js-show").on('click', function() {
+    $(this).hide();
+    let zoo_id = $(this).data("zoo-id");
+    let user_id = $(this).data("user-id");
+
+    $.get(`/users/${user_id}/zoos/${zoo_id}.json`, function (data) {
+      let animals = data.animals;
+      let showAnimals = $.map(animals, animal => { 
+       return `<li>${animal.name} the ${animal.species}</li>`
+      })
+      
+      $('#animals').html(showAnimals)
+    })
+  })
+})
+
+// $(function(){
+//   Animal.ready()
+// })

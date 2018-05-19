@@ -1,4 +1,4 @@
 class ZooSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :id, :name, :animal_id, :user_id, :keeper_id
   has_many :animals
 end

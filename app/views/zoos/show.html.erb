@@ -1,13 +1,8 @@
-<h1><%= @zoo.name %></h1>
-  <h4><%= link_to "Edit Zoo", edit_user_zoo_path(current_user, @zoo) %></h4>
+<h1><%= @zoo.name %> - <%= link_to "Edit", edit_user_zoo_path(current_user, @zoo) %></h4>
   <h4>Animal Capacity: <%= @zoo.animal_capacity %></h4>
   <div class="container">
-    <h3>Animals Hosted</h3>
-      <ul>
-        <% @zoo.animals.each do |animal| %>
-          <li><%= link_to "#{animal.name}", user_animal_path(current_user, animal) %> </li>
-        <% end %>
-      </ul>
+    <h3>Animals Hosted <button class="js-show" onclick="return false" data-zoo-id="<%= @zoo.id %>" data-user-id="<%= current_user.id %>">Show</button></h3>
+      <ul id="animals"></ul>
           <% if @zoo.animal_capacity_reached? %>
               <p>You have reached your animal limit!</p>
           <% else %>
