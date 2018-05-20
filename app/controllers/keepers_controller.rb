@@ -27,8 +27,11 @@ class KeepersController < ApplicationController
       flash[:error] = 'That Zoo cannot have anymore keepers! Please choose a different zoo.'
       redirect_to new_user_keeper_path
     elsif @keeper.save
-      flash[:notice] = "Successfully added #{@keeper.name}."
-      redirect_to user_zoo_path(current_user, @keeper.zoo)
+      respond_to do |format|
+        format.html { redirect_to user_zoo_path(current_user, @keeper.zoo), :notice => "Successfully added #{@keeper.name}." }
+        format.json { render json: @keeper }
+        
+      end
     else
       flash[:error] = 'Something went wrong. Please try again.'
       redirect_to new_user_keeper_path

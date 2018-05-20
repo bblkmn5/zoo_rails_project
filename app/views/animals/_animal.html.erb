@@ -1,0 +1,3 @@
+<% @zoo.animals.each do |animal| %>
+  <li><%= link_to "#{animal.name} ", user_animal_path(current_user, animal) %> the <%= animal.species %></li>
+<% end %>

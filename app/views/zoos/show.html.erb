@@ -1,8 +1,11 @@
 <h1><%= @zoo.name %> - <%= link_to "Edit", edit_user_zoo_path(current_user, @zoo) %></h4>
   <h4>Animal Capacity: <%= @zoo.animal_capacity %></h4>
   <div class="container">
-    <h3>Animals Hosted <button class="js-show" onclick="return false" data-zoo-id="<%= @zoo.id %>" data-user-id="<%= current_user.id %>">Show</button></h3>
-      <ul id="animals"></ul>
+    <h3>Animals Hosted
+    <p><a href="#" class="js-show" data-zoo-id="<%= @zoo.id %>" data-user-id="<%= current_user.id %>"> Show</a></p></h3>
+      <ol id="animals" style="display:none;">
+        <%= render '/animals/animal' %>
+      </ol><br>
           <% if @zoo.animal_capacity_reached? %>
               <p>You have reached your animal limit!</p>
           <% else %>
@@ -20,6 +23,6 @@
     <% if @zoo.keeper_capacity_reached? %>
       <p>You have reached your keeper limit!</p>
     <% else %>
-      <h4><%= link_to "Add a Zoo Keeper", new_user_keeper_path(current_user, @zoo) %></h4>
+      <h4><%= link_to "Add a Zoo Keeper", new_user_keeper_path(current_user, @zoo), { class: 'new-keeper' } %></h4>
     <% end %><br>
   </div>

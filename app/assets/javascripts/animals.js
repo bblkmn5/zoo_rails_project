@@ -39,19 +39,19 @@ $(function() {
 });
 
 $(function() {
-  $("button.js-show").on('click', function() {
+  $("a.js-show").on('click', function() {
     $(this).hide();
-    let zoo_id = $(this).data("zoo-id");
-    let user_id = $(this).data("user-id");
+    // let zoo_id = $(this).data("zoo-id");
+    // let user_id = $(this).data("user-id");
 
-    $.get(`/users/${user_id}/zoos/${zoo_id}.json`, function (data) {
-      let animals = data.animals;
-      let showAnimals = $.map(animals, animal => { 
-       return `<li>${animal.name} the ${animal.species}</li>`
-      })
-      
-      $('#animals').html(showAnimals)
-    })
+    // $.get(`/users/${user_id}/zoos/${zoo_id}.json`, function (data) {
+    //   let animals = data.animals;
+    //   let showAnimals = $.map(animals, animal => { 
+    //    return `<li>${animal.name} the ${animal.species}</li>`
+    //   })
+    //   $('#animals').html(showAnimals);
+      $('#animals').show();
+    // })
   })
 })
 

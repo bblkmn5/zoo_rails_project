@@ -1,5 +1,6 @@
 # Feature added to zookeepers
 class CommentsController < ApplicationController
+  before_action :set_comment, only: %i[show destroy]
   before_action :set_animal
 
   def index
@@ -10,9 +11,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  def show
-    @comment = Comment.find(params[:id])
-  end
+  def show; end
 
   def new
     @comment = Comment.new(animal_id: @animal.id)
@@ -33,13 +32,16 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     @comment.destroy
     flash[:notice] = 'Comment deleted'
     redirect_to user_animal_path(current_user, @animal)
   end
 
   private
+
+  def set_comment
+    @comment = Coment.find(params[:id])
+  end
 
   def set_animal
     @animal = Animal.find_by(id: params[:animal_id])
