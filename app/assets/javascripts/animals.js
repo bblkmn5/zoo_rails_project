@@ -39,7 +39,8 @@ $(function() {
 });
 
 $(function() {
-  $("a.js-show").on('click', function() {
+  $("a.js-show").on('click', function(e) {
+    e.preventDefault();
     $(this).hide();
     // let zoo_id = $(this).data("zoo-id");
     // let user_id = $(this).data("user-id");

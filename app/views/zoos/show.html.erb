@@ -2,7 +2,7 @@
   <h4>Animal Capacity: <%= @zoo.animal_capacity %></h4>
   <div class="container">
     <h3>Animals Hosted
-    <p><a href="#" class="js-show" data-zoo-id="<%= @zoo.id %>" data-user-id="<%= current_user.id %>"> Show</a></p></h3>
+    <p><a href="#" return false class="js-show" data-zoo-id="<%= @zoo.id %>" data-user-id="<%= current_user.id %>"> Show</a></p></h3>
       <ol id="animals" style="display:none;">
         <%= render '/animals/animal' %>
       </ol><br>
@@ -15,14 +15,20 @@
   <h4>Zoo Keeper Capacity: <%= @zoo.keeper_capacity %></h4>
   <div class="container">
     <h3>Zoo Keepers Employed</h3>
-    <ul>
-      <% @zoo.keepers.each do |keeper| %>
-        <li><%= link_to "#{keeper.name} ", user_keeper_path(current_user, keeper) %></li>
-      <% end %>
-    </ul>
+    <div class="keepers">
+      <%= render 'keepers/keeper', keeper: @keeper %>
+    </div>
     <% if @zoo.keeper_capacity_reached? %>
       <p>You have reached your keeper limit!</p>
     <% else %>
-      <h4><%= link_to "Add a Zoo Keeper", new_user_keeper_path(current_user, @zoo), { class: 'new-keeper' } %></h4>
+      <h4><a href="#" id="show-keeper" return false>Add a Zoo Keeper</a></h4>
+      <div id="keeper-form" data-user-id="<%= current_user.id %>" data-zoo-id="<%= @zoo.id %>" style="display:none;">
+        <%= form_for ([current_user, @keeper]) do |f| %>
+          <%= f.label :name %>:
+          <%= f.text_field :name %>
+          <%= f.hidden_field :zoo_id, value: @zoo.id %>
+          <p><%= f.submit "Add Keeper", data: { disable_with: false } %></p>
+        <% end %>
+      </div>
     <% end %><br>
   </div>
