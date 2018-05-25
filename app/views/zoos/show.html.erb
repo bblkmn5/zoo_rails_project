@@ -15,7 +15,7 @@
   <h4>Zoo Keeper Capacity: <%= @zoo.keeper_capacity %></h4>
   <div class="container">
     <h3>Zoo Keepers Employed</h3>
-    <div class="keepers">
+    <div class="zoo-keepers-show">
       <%= render 'keepers/keeper', keeper: @keeper %>
     </div>
     <% if @zoo.keeper_capacity_reached? %>

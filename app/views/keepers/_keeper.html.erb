@@ -1,4 +1,4 @@
-<ol>
+<ol id="this-better-work">
   <% @zoo.keepers.each do |keeper| %>
     <li><%= link_to "#{keeper.name} ", user_keeper_path(current_user, keeper) %></li>
   <% end %>

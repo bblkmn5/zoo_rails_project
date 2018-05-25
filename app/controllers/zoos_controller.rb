@@ -13,6 +13,8 @@ class ZoosController < ApplicationController
   # end
 
   def show
+    @keepers = @zoo.keepers
+    @keeper = Keeper.new
     respond_to do |format|
       format.html { render :show }
       format.json { render json: @zoo }

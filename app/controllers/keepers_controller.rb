@@ -3,7 +3,7 @@ class KeepersController < ApplicationController
   before_action :authenticate_user!
   before_action :set_keeper, only: %i[show edit update destroy]
   before_action :user_is_current_user, only: %i[show edit update destroy]
-  before_action :set_zoo, only: %i[show edit update]
+  before_action :set_zoo, only: %i[show edit update destroy]
 
   def index
     @keepers = Keeper.all
@@ -55,7 +55,7 @@ class KeepersController < ApplicationController
   def destroy
     @keeper.delete
     flash[:alert] = "After much consideration, you have decided to lay off #{@keeper.name}. Goodbye #{@keeper.name}!"
-    redirect_to user_keepers_path(:zoo_id)
+    redirect_to user_zoo_path(current_user, @keeper.zoo)
   end
 
   private

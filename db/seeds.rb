@@ -11,7 +11,7 @@ User.create!([
 ])
 
 Zoo.create!([
-  { name: 'Best Zoo Ever', animal_capacity: 5, keeper_capacity: 5, user_id: 1 },
+  { name: 'Best Zoo Ever', animal_capacity: 5, keeper_capacity: 50, user_id: 1 },
 
   { name: 'Second Best Zoo Ever', animal_capacity: 2, keeper_capacity: 2, user_id: 2 }
 ])

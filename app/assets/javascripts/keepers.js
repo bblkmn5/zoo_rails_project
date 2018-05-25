@@ -14,19 +14,22 @@ $(function(){
     
     let $form = $(this);
     let action = $form.attr("action");
+    console.log(action)
     let params = $form.serialize();
+    console.log(params)
     
-    $.post(action, params)
-    .success(response => {
+    $.post(`${action}.json`, params, function(response){
       console.log(response)
       $("#keeper_name").val("");
-      debugger
-      let $ol = $("div.container.keepers ol");
+      let $ol = $("ol.this-better-work");
+      console.log($ol)
+      //debugger
       
-      $ol.append(response);
+      $ol.append('<li>Hello</li>');
     })
-    .error(response => {
-      console.log(response)
-    })
+    
+    //.error(response => {
+      //console.log("Oh no! here is your" + response)
+    //})
   })
 })
