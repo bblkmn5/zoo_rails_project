@@ -1,25 +1,33 @@
 function Comment(attributes){
   this.id = attributes.id;
   this.notes = attributes.notes;
-  this.animal_id = attributes.animal_id;
 }
 
-Comment.prototype.renderComment = function(){
-
+Comment.ready = () => {
+  Comment.templateSource = $("#comment-entry-template").html();
+  Comment.template = Handlebars.compile(Comment.templateSource);
+  Comment.formSubmitListener()
 }
 
-$(function(){
+
+Comment.prototype.renderLI = function(){
+    return Comment.template(this);
+}
+
+Comment.formSubmitListener = function(){
   $("#new_comment").on("submit", function(e) {
     e.preventDefault();
     let $form = $(this);
     let action = $form.attr("action");
     let params = $form.serialize();
 
-    $.post(action, params)
-    .done(response => {
+    $.post(`${action}.json`, params)
+    .success(response => {
+      console.log(response)
       $("#comment_notes").val("");
-        let $ol = $("div.comments ol");
-        $ol.append(response);
+      let comment = new Comment(response);
+      let commentLi = comment.renderLI();
+      $("ol.comment-entry").append(commentLi);
     })
     // low-level ajax
     // $.ajax({
@@ -32,4 +40,8 @@ $(function(){
     //     $ol.append(response);
     //   }
   });
+}
+
+$(function() {
+  Comment.ready()
 })

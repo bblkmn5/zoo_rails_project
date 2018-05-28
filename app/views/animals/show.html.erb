@@ -18,3 +18,7 @@
   <%= f.text_area :notes %>
   <p><%= f.submit "Add Note", data: { disable_with: false } %></p>
 <% end %>
+
+<script id="comment-entry-template" type="text/x-handlebars-template">
+  <li>{{notes}}<a href="/users/<%= current_user.id %>/animals/<%= @animal.id %>/comments/{{id}}">(delete)</a></li>
+</script>

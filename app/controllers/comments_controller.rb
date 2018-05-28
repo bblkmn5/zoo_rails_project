@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     @comment = @animal.comments.build(comment_params)
     if @comment.save
       respond_to do |format|
-        format.html { render :show, layout: false}
+        format.html { redirect_to @animal }
         format.json { render json: @comment }
       end
       #  redirect_to user_animal_path(current_user, @animal)
@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
   private
 
   def set_comment
-    @comment = Coment.find(params[:id])
+    @comment = Comment.find(params[:id])
   end
 
   def set_animal
