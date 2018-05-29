@@ -6,17 +6,17 @@ function Animal(attributes) {
   this.comments = attributes.comments;
 }
 
-// Animal.ready = function(){
-  
-// }
+Animal.ready = function(){
+  Animal.showMoreTraits()
+  Animal.showAnimal()
+}
 
-Animal.prototype.renderAnimal = function(){
-  const animalHTML = `<li>${this.name} the ${this.species}</li>`
-  return animalHTML;
+Animal.prototype.renderAnimalTraits = function(){
+  return `<p>Species: ${this.species}</p><p>Personality: ${this.personality}</p><p>Notes: `
 }
 
 
-$(function() {
+Animal.showMoreTraits = function() {
   $(".js-more").on('click', function() {
     $(this).hide();
     let id = $(this).data("id");
@@ -28,7 +28,8 @@ $(function() {
           return `<li>${comment.notes}</li>`
         })
       // console.log(animalComments) 
-      let animalTraits = `<p>Species: ${animal.species}</p><p>Personality: ${animal.personality}</p><p>Notes: `
+      let showAnimal = new Animal(animal)
+      let animalTraits = showAnimal.renderAnimalTraits()
       if (animal.comments < 1)
         animalTraits += "You have no notes for this animal!</p>"
       else
@@ -36,9 +37,9 @@ $(function() {
       $("#animal-" + id).html(animalTraits);
       })
     });
-});
+};
 
-$(function() {
+Animal.showAnimal = function() {
   $("a.js-show").on('click', function(e) {
     e.preventDefault();
     $(this).hide();
@@ -54,8 +55,8 @@ $(function() {
       $('#animals').show();
     // })
   })
-})
+};
 
-// $(function(){
-//   Animal.ready()
-// })
+$(function(){
+  Animal.ready()
+})

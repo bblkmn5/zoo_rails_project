@@ -22,16 +22,14 @@
       <p>You have reached your keeper limit!</p>
     <% else %>
       <h4><a href="#" id="js-show-keeper" return false>Add a Zoo Keeper</a></h4>
-      <div id="show-keeper-form" data-user-id="<%= current_user.id %>" data-zoo-id="<%= @zoo.id %>">
+      <div id="show-keeper-form" data-user-id="<%= current_user.id %>" data-zoo-id="<%= @zoo.id %>" style="display: none">
+        <%= form_for ([current_user, @keeper]) do |f| %>
+          <%= f.label :name %>:
+          <%= f.text_field :name %>
+          <%= f.hidden_field :zoo_id, value: @zoo.id %>
+          <p><%= f.submit "Add Keeper", data: { disable_with: false } %></p>
+        <% end %>
       </div>
     <% end %><br>
   </div>
-
-<script id="new-keeper-form-template" type="text/x-handlebars-template">
-  <%= form_for ([current_user, @keeper]) do |f| %>
-    <%= f.label :name %>:
-    <%= f.text_field :name %>
-    <%= f.hidden_field :zoo_id, value: @zoo.id %>
-    <p><%= f.submit "Add Keeper", data: { disable_with: false } %></p>
-  <% end %>
-</script>
+  

@@ -4,14 +4,12 @@ function Comment(attributes){
 }
 
 Comment.ready = () => {
-  Comment.templateSource = $("#comment-entry-template").html();
-  Comment.template = Handlebars.compile(Comment.templateSource);
   Comment.formSubmitListener()
 }
 
 
 Comment.prototype.renderLI = function(){
-    return Comment.template(this);
+    return `<li>${this.notes}<a href="/users/${user_id}/animals/${animal_id}/comments/${this.id}">(delete)</a></li>`
 }
 
 Comment.formSubmitListener = function(){
