@@ -13,7 +13,7 @@
 <%= link_to "Edit this Animal", edit_user_animal_path(current_user, @animal) %><br><br>
 
 <h2><%= "Add a note for #{@animal.name}!" %></h2>
-<%= form_for ([current_user, @animal, @comment]) do |f| %>
+<%= form_for ([current_user, @animal, @comment]), html: { 'data-id' => "#{@comment.id}", 'data-user-id' => "#{current_user.id}", 'data-animal-id' => "#{@animal.id}" } do |f| %>
   <%= f.hidden_field :animal_id, value: @animal.id %>
   <%= f.text_area :notes %>
   <p><%= f.submit "Add Note", data: { disable_with: false } %></p>
