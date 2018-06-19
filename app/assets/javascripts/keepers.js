@@ -1,7 +1,7 @@
 function Keeper(attributes) {
   this.id = attributes.id;
   this.name = attributes.name;
-  this.zoo_id = attributes.zoo_id;
+  this.zooId = attributes.zooId;
 }
 
 Keeper.ready = () => {
@@ -21,16 +21,16 @@ Keeper.error = function(response){
 Keeper.formSubmit = function(e) {
   e.preventDefault();
   
-  let $form = $(this);
-  let action = $form.attr("action");
-  let params = $form.serialize();
+  // let $form = $(this);
+  const action = $(this).attr("action");
+  const params = $(this).serialize();
 
   $.post(`${action}.json`, params)
   .success(response => {
     $("#keeper_name").val("");
     let $ol = $("ol#show-keepers");
-    let keeperName = new Keeper(response);
-    console.log(keeperName)
+    const keeperName = new Keeper(response);
+    // console.log(keeperName)
     $ol.append(keeperName.renderLi());
   })
   .error(Keeper.error)

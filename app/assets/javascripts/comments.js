@@ -1,7 +1,7 @@
 function Comment(attributes){
   this.id = attributes.id;
   this.notes = attributes.notes;
-  this.animal_id = attributes.animal_id;
+  this.animalId = attributes.animalId;
 }
 
 Comment.ready = () => {
@@ -18,21 +18,21 @@ Comment.formSubmitListener = function(){
   
 Comment.formSubmit = function(e) {
   e.preventDefault();
-  let $form = $(this);
-  let action = $form.attr("action");
-  let params = $form.serialize();
+  // let $form = $(this);
+  const action = $(this).attr("action");
+  const params = $(this).serialize();
 
   $.post(`${action}.json`, params)
   .success(response => {
-    let id = response.id;
-    let user_id = $(this).data("user-id");
-    let animal_id = $(this).data("animal-id");
+    const id = response.id;
+    const userId = $(this).data("user-id");
+    const animalId = $(this).data("animal-id");
     
     // console.log(response)
     $("#comment_notes").val("");
-    let comment = new Comment(response);
+    const comment = new Comment(response);
     let commentLi = comment.renderLI();
-    commentLi += `<a rel="nofollow" data-method="delete" href="/users/${user_id}/animals/${animal_id}/comments/${id}">(delete)</a></li>`
+    commentLi += `<a rel="nofollow" data-method="delete" href="/users/${userId}/animals/${animalId}/comments/${id}">(delete)</a></li>`
     $("ol.comment-entry").append(commentLi);
   })
   // low-level ajax
